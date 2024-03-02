@@ -125,7 +125,7 @@ const LoginForm = () => {
           <SuccessMessage text={success} />
 
           <Button className="w-full" type="submit" disabled={isPending}>
-            Log in
+            Sign up
           </Button>
         </form>
       </Form>
