@@ -23,3 +23,9 @@ export const registerSchema = z.object({
     message: "Minimum 6 characters required",
   }),
 });
+
+export const resetSchema = z.object({
+  email: z.string().email({
+    message: "Invalid email format",
+  }),
+});
