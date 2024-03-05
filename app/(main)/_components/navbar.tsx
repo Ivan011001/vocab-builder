@@ -12,19 +12,28 @@ const Navbar = () => {
   return (
     <div className="p-4 flex items-center justify-between bg-secondary rounded-md w-[600px]">
       <div className="flex items-center gap-x-2">
-        <Button variant={pathname === "/server" ? "default" : "outline"}>
+        <Button
+          variant={pathname === "/server" ? "default" : "outline"}
+          asChild
+        >
           <Link href="/server">Server</Link>
         </Button>
 
-        <Button variant={pathname === "/client" ? "default" : "outline"}>
+        <Button
+          variant={pathname === "/client" ? "default" : "outline"}
+          asChild
+        >
           <Link href="/client">Client</Link>
         </Button>
 
-        <Button variant={pathname === "/admin" ? "default" : "outline"}>
+        <Button variant={pathname === "/admin" ? "default" : "outline"} asChild>
           <Link href="/admin">Admin</Link>
         </Button>
 
-        <Button variant={pathname === "/settings" ? "default" : "outline"}>
+        <Button
+          variant={pathname === "/settings" ? "default" : "outline"}
+          asChild
+        >
           <Link href="/settings">Settings</Link>
         </Button>
       </div>
