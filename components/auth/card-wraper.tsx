@@ -1,6 +1,5 @@
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 
-import BackButton from "./back-button";
 import Header from "./card-header";
 import Socials from "./socials";
 
@@ -17,27 +16,21 @@ const CardWrapper = ({
   children,
   headerTitle,
   headerDescription,
-  backButtonLabel,
-  backButtonHref,
   showSocials,
 }: ICardWrapperProps) => {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="md:max-w-[628px] border-none bg-gray-400 bg-opacity-10 rounded-3xl shadow-none py-8 md:py-[48px] px-4 md:px-[64px]">
+      <CardHeader className="p-0 mb-10 md:mb-8">
         <Header description={headerDescription} title={headerTitle} />
       </CardHeader>
 
-      <CardContent>{children}</CardContent>
+      <CardContent className="p-0 mb-8">{children}</CardContent>
 
       {showSocials && (
-        <CardFooter>
+        <CardFooter className="p-0">
           <Socials />
         </CardFooter>
       )}
-
-      <CardFooter>
-        <BackButton label={backButtonLabel} href={backButtonHref} />
-      </CardFooter>
     </Card>
   );
 };

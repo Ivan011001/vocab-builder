@@ -23,6 +23,7 @@ import ErrorMessage from "../error-message";
 import SuccessMessage from "../success-message";
 
 import { register } from "@/actions/register";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -63,8 +64,8 @@ const LoginForm = () => {
       showSocials
     >
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="space-y-4">
+        <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-[14px] md:space-y-[18px]">
             <FormField
               control={form.control}
               name="name"
@@ -118,9 +119,18 @@ const LoginForm = () => {
           <ErrorMessage text={error} />
           <SuccessMessage text={success} />
 
-          <Button className="w-full" type="submit" disabled={isPending}>
-            Sign up
-          </Button>
+          <div className="flex flex-col items-center gap-y-4">
+            <Button className="w-full" type="submit" disabled={isPending}>
+              Register
+            </Button>
+
+            <Link
+              href="/login"
+              className="text-neutral-900 text-opacity-50 text-base font-bold underline leading-normal"
+            >
+              Login
+            </Link>
+          </div>
         </form>
       </Form>
     </CardWrapper>
