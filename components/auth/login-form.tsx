@@ -160,7 +160,7 @@ const LoginForm = () => {
           <SuccessMessage text={success} />
 
           <Button
-            className="md:text-lg"
+            className=""
             type="submit"
             disabled={isPending}
             variant="default"
