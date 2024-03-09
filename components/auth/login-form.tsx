@@ -84,8 +84,8 @@ const LoginForm = () => {
       showSocials
     >
       <Form {...form}>
-        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="space-y-4">
+        <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-[14px] md:space-y-[18px]">
             {showTwoFactor && (
               <FormField
                 control={form.control}
@@ -156,24 +156,18 @@ const LoginForm = () => {
           <ErrorMessage text={error || errorUrl} />
           <SuccessMessage text={success} />
 
-          <Button
-            className=""
-            type="submit"
-            disabled={isPending}
-            variant="default"
-          >
-            {showTwoFactor ? "Confirm" : "Login"}
-          </Button>
+          <div className="flex flex-col items-center gap-y-4">
+            <Button type="submit" disabled={isPending}>
+              {showTwoFactor ? "Confirm" : "Login"}
+            </Button>
 
-          <Button
-            className="underline"
-            type="button"
-            disabled={isPending}
-            variant="default"
-            asChild
-          >
-            <Link href="/register">Register</Link>
-          </Button>
+            <Link
+              href="/register"
+              className="text-neutral-900 text-opacity-50 text-base font-bold underline leading-normal"
+            >
+              Register
+            </Link>
+          </div>
         </form>
       </Form>
     </CardWrapper>
