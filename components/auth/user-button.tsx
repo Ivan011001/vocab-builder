@@ -20,11 +20,14 @@ const UserButton = () => {
 
   return (
     <DropdownMenu>
+      <p className="text-primary text-base md:text-xl md:mr-4 font-medium mr-2">
+        Iryna
+      </p>
       <DropdownMenuTrigger>
-        <Avatar>
+        <Avatar className="w-9 h-9 md:w-12 md:h-12 mr-2">
           <AvatarImage src={user?.image || ""} />
-          <AvatarFallback className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-            <FaUser className="w-4 h-4" color="white" />
+          <AvatarFallback className="bg-accent">
+            <FaUser className="w-4 h-4  " color="white" />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
