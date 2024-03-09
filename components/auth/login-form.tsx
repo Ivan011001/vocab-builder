@@ -18,7 +18,6 @@ import {
   Form,
   FormField,
   FormItem,
-  FormLabel,
   FormControl,
   FormMessage,
 } from "../ui/form";
@@ -78,7 +77,8 @@ const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
+      headerTitle="Login"
+      headerDescription="Please enter your login details to continue using our service:"
       backButtonLabel="Don't have an account?"
       backButtonHref="/register"
       showSocials
@@ -92,12 +92,11 @@ const LoginForm = () => {
                 name="code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Your 2FA code</FormLabel>
                     <FormControl>
                       <Input
                         disabled={isPending}
                         {...field}
-                        placeholder="123456"
+                        placeholder="Code"
                       />
                     </FormControl>
                     <FormMessage />
@@ -112,13 +111,12 @@ const LoginForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
                           disabled={isPending}
                           {...field}
                           type="email"
-                          placeholder="johndoe@mail.com"
+                          placeholder="Email"
                         />
                       </FormControl>
                       <FormMessage />
@@ -131,13 +129,12 @@ const LoginForm = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
                           disabled={isPending}
                           {...field}
                           type="password"
-                          placeholder="******"
+                          placeholder="Password"
                         />
                       </FormControl>
                       <FormMessage />
