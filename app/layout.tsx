@@ -14,6 +14,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Vocab Builder",
   description: "Inreach your vocabulary with Vocan Builder. Join now!",
+  icons: {
+    icon: [
+      {
+        url: "/logo.svg",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
