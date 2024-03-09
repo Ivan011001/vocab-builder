@@ -162,7 +162,17 @@ const LoginForm = () => {
             disabled={isPending}
             variant="default"
           >
-            {showTwoFactor ? "Confirm" : "Log in"}
+            {showTwoFactor ? "Confirm" : "Login"}
+          </Button>
+
+          <Button
+            className="underline"
+            type="button"
+            disabled={isPending}
+            variant="default"
+            asChild
+          >
+            <Link href="/register">Register</Link>
           </Button>
         </form>
       </Form>
