@@ -8,6 +8,7 @@ const AuthImage = () => {
       height={435}
       alt="Reading book"
       src="/reading.png"
+      priority
     />
   );
 };
