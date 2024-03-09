@@ -17,7 +17,6 @@ import {
   Form,
   FormField,
   FormItem,
-  FormLabel,
   FormControl,
   FormMessage,
 } from "../ui/form";
@@ -58,7 +57,7 @@ const NewPasswordForm = () => {
   return (
     <CardWrapper
       headerTitle="New Password"
-      backButtonLabel="Back to login"
+      backButtonLabel="Login"
       backButtonHref="/login"
     >
       <Form {...form}>
@@ -69,13 +68,12 @@ const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
                       {...field}
                       type="password"
-                      placeholder="******"
+                      placeholder="Password"
                     />
                   </FormControl>
                   <FormMessage />
