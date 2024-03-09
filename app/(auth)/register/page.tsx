@@ -4,7 +4,7 @@ import RegisterForm from "@/components/auth/register-form";
 
 const RegisterPage = () => {
   return (
-    <div className="h-full w-full flex flex-col-reverse md:flex-col lg:flex-row items-center justify-between">
+    <div className="h-full w-full flex flex-col-reverse justify-between md:justify-center lg:justify-between  md:flex-col lg:flex-row items-center">
       <RegisterForm />
 
       <div className="hidden md:flex justify-center lg:hidden mt-[100px]">
