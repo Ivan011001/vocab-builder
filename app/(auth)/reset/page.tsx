@@ -14,9 +14,7 @@ const ResetPage = () => {
       <div className="flex flex-col gap-y-4 items-center md:hidden lg:block">
         <AuthImage />
 
-        <div className="md:hidden">
-          <AuthBullets />
-        </div>
+        <AuthBullets />
       </div>
     </div>
   );

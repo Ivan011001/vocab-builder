@@ -1,7 +1,23 @@
+import AuthImage from "../_components/auth-image";
+import AuthBullets from "../_components/auth-bullets";
 import NewVerificationForm from "@/components/auth/new-verification-form";
 
-const NewVerificationPage = () => {
-  return <NewVerificationForm />;
+const ResetPage = () => {
+  return (
+    <div className="h-full w-full flex flex-col-reverse justify-between md:justify-center lg:justify-between md:flex-col lg:flex-row items-center ">
+      <NewVerificationForm />
+
+      <div className="hidden md:flex justify-center lg:hidden mt-[100px]">
+        <AuthBullets />
+      </div>
+
+      <div className="flex flex-col gap-y-4 items-center md:hidden lg:block">
+        <AuthImage />
+
+        <AuthBullets />
+      </div>
+    </div>
+  );
 };
 
-export default NewVerificationPage;
+export default ResetPage;
