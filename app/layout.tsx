@@ -1,14 +1,33 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/sonner";
-
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+const macPawFixelDisplay = localFont({
+  src: [
+    {
+      path: "../public/fonts/FixelDisplay-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/FixelDisplay-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/FixelDisplay-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/FixelDisplay-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +52,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <body className={poppins.className}>
+        <body className={macPawFixelDisplay.className}>
           <Toaster />
           {children}
         </body>
