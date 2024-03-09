@@ -6,7 +6,8 @@ import Socials from "./socials";
 
 interface ICardWrapperProps {
   children: React.ReactNode;
-  headerLabel: string;
+  headerTitle: string;
+  headerDescription?: string;
   backButtonLabel: string;
   backButtonHref: string;
   showSocials?: boolean;
@@ -14,15 +15,16 @@ interface ICardWrapperProps {
 
 const CardWrapper = ({
   children,
-  headerLabel,
+  headerTitle,
+  headerDescription,
   backButtonLabel,
   backButtonHref,
   showSocials,
 }: ICardWrapperProps) => {
   return (
-    <Card className="shadow-md w-[400px]">
+    <Card>
       <CardHeader>
-        <Header label={headerLabel} />
+        <Header description={headerDescription} title={headerTitle} />
       </CardHeader>
 
       <CardContent>{children}</CardContent>

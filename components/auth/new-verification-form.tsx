@@ -37,7 +37,7 @@ const NewVerificationForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Email verification process"
+      headerTitle="Email Verification"
       backButtonLabel="Back to login"
       backButtonHref="/login"
     >

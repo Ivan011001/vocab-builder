@@ -56,7 +56,8 @@ const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Create an account"
+      headerTitle="Register"
+      headerDescription="To start using our services, please fill out the registration form below. All fields are mandatory:"
       backButtonLabel="Already have an account?"
       backButtonHref="/login"
       showSocials
