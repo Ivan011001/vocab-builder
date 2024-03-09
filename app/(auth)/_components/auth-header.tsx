@@ -2,7 +2,7 @@ import Logo from "@/components/ui/logo";
 
 const AuthHeader = () => {
   return (
-    <header className="w-full">
+    <header className="w-full px-4 md:px-0">
       <Logo />
     </header>
   );

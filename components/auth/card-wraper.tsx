@@ -19,7 +19,7 @@ const CardWrapper = ({
   showSocials,
 }: ICardWrapperProps) => {
   return (
-    <Card className="md:max-w-[628px] border-none bg-gray-400 bg-opacity-10 rounded-3xl shadow-none py-8 md:py-[48px] px-4 md:px-[64px]">
+    <Card className="md:max-w-[628px] border-none bg-gray-400 bg-opacity-10 rounded-none rounded-tr-3xl rounded-tl-3xl md:rounded-3xl shadow-none py-8 md:py-[48px] px-4 md:px-[64px]">
       <CardHeader className="p-0 mb-10 md:mb-8">
         <Header description={headerDescription} title={headerTitle} />
       </CardHeader>
