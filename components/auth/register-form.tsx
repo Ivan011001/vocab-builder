@@ -16,7 +16,6 @@ import {
   Form,
   FormField,
   FormItem,
-  FormLabel,
   FormControl,
   FormMessage,
 } from "../ui/form";
@@ -33,6 +32,7 @@ const LoginForm = () => {
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
+
     defaultValues: {
       name: "",
       email: "",
@@ -69,13 +69,8 @@ const LoginForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={isPending}
-                      {...field}
-                      placeholder="John Doe"
-                    />
+                    <Input disabled={isPending} {...field} placeholder="Name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -87,13 +82,12 @@ const LoginForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
                       {...field}
                       type="email"
-                      placeholder="johndoe@mail.com"
+                      placeholder="Email"
                     />
                   </FormControl>
                   <FormMessage />
@@ -106,13 +100,12 @@ const LoginForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
                       {...field}
                       type="password"
-                      placeholder="******"
+                      placeholder="Password"
                     />
                   </FormControl>
                   <FormMessage />
