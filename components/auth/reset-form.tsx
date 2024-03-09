@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import * as z from "zod";
+import { resetSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import ErrorMessage from "../error-message";
@@ -16,12 +17,10 @@ import {
   Form,
   FormField,
   FormItem,
-  FormLabel,
   FormControl,
   FormMessage,
 } from "../ui/form";
 
-import { resetSchema } from "@/schemas";
 import { reset } from "@/actions/reset";
 
 const ResetForm = () => {
@@ -54,7 +53,7 @@ const ResetForm = () => {
   return (
     <CardWrapper
       headerTitle="Reset Password"
-      backButtonLabel="Back to login"
+      backButtonLabel="Login"
       backButtonHref="/login"
     >
       <Form {...form}>
@@ -65,13 +64,12 @@ const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
                       {...field}
                       type="email"
-                      placeholder="johndoe@mail.com"
+                      placeholder="Email"
                     />
                   </FormControl>
                   <FormMessage />
