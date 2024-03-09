@@ -23,6 +23,7 @@ import ErrorMessage from "../error-message";
 import SuccessMessage from "../success-message";
 
 import { register } from "@/actions/register";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -119,7 +120,11 @@ const LoginForm = () => {
           <SuccessMessage text={success} />
 
           <Button className="w-full" type="submit" disabled={isPending}>
-            Sign up
+            Register
+          </Button>
+
+          <Button className="underline" type="button" asChild>
+            <Link href="/login">Login</Link>
           </Button>
         </form>
       </Form>
