@@ -159,7 +159,12 @@ const LoginForm = () => {
           <ErrorMessage text={error || errorUrl} />
           <SuccessMessage text={success} />
 
-          <Button className="w-full" type="submit" disabled={isPending}>
+          <Button
+            className=""
+            type="submit"
+            disabled={isPending}
+            variant="default"
+          >
             {showTwoFactor ? "Confirm" : "Log in"}
           </Button>
         </form>
