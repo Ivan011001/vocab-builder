@@ -23,7 +23,6 @@ import ErrorMessage from "../error-message";
 import SuccessMessage from "../success-message";
 
 import { register } from "@/actions/register";
-import Link from "next/link";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -59,7 +58,7 @@ const LoginForm = () => {
     <CardWrapper
       headerTitle="Register"
       headerDescription="To start using our services, please fill out the registration form below. All fields are mandatory:"
-      backButtonLabel="Already have an account?"
+      backButtonLabel="Login"
       backButtonHref="/login"
       showSocials
     >
@@ -119,18 +118,9 @@ const LoginForm = () => {
           <ErrorMessage text={error} />
           <SuccessMessage text={success} />
 
-          <div className="flex flex-col items-center gap-y-4">
-            <Button className="w-full" type="submit" disabled={isPending}>
-              Register
-            </Button>
-
-            <Link
-              href="/login"
-              className="text-neutral-900 text-opacity-50 text-base font-bold underline leading-normal"
-            >
-              Login
-            </Link>
-          </div>
+          <Button className="w-full" type="submit" disabled={isPending}>
+            Register
+          </Button>
         </form>
       </Form>
     </CardWrapper>

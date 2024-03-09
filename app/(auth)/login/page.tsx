@@ -4,7 +4,7 @@ import AuthBullets from "../_components/auth-bullets";
 
 const LoginPage = () => {
   return (
-    <div className="w-full flex flex-col-reverse gap-y-[43px] md:flex-col lg:flex-row items-center justify-between">
+    <div className="w-full flex flex-col-reverse gap-y-[28px] md:flex-col lg:flex-row items-center justify-between">
       <LoginForm />
 
       <div className="hidden md:flex justify-center lg:hidden mt-[100px]">

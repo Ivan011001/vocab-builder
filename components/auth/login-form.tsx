@@ -79,7 +79,7 @@ const LoginForm = () => {
     <CardWrapper
       headerTitle="Login"
       headerDescription="Please enter your login details to continue using our service:"
-      backButtonLabel="Don't have an account?"
+      backButtonLabel="Register"
       backButtonHref="/register"
       showSocials
     >
@@ -156,18 +156,9 @@ const LoginForm = () => {
           <ErrorMessage text={error || errorUrl} />
           <SuccessMessage text={success} />
 
-          <div className="flex flex-col items-center gap-y-4">
-            <Button type="submit" disabled={isPending}>
-              {showTwoFactor ? "Confirm" : "Login"}
-            </Button>
-
-            <Link
-              href="/register"
-              className="text-neutral-900 text-opacity-50 text-base font-bold underline leading-normal"
-            >
-              Register
-            </Link>
-          </div>
+          <Button type="submit" disabled={isPending}>
+            {showTwoFactor ? "Confirm" : "Login"}
+          </Button>
         </form>
       </Form>
     </CardWrapper>

@@ -10,9 +10,12 @@ interface IBackButtonProps {
 const BackButton = ({ label, href }: IBackButtonProps) => {
   return (
     <div className="w-full flex justify-center">
-      <Button asChild size="sm" variant="link" className="font-normal">
-        <Link href={href}>{label}</Link>
-      </Button>
+      <Link
+        href={href}
+        className="text-neutral-900 text-opacity-50 text-base font-bold underline leading-normal"
+      >
+        {label}
+      </Link>
     </div>
   );
 };
