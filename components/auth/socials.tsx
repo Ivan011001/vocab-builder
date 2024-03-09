@@ -24,7 +24,6 @@ const Socials = () => {
     <div className="w-full flex gap-2 items-center">
       <Button
         className="w-full"
-        size="lg"
         variant="outline"
         onClick={() => onHandleClick("google")}
       >
@@ -33,7 +32,6 @@ const Socials = () => {
 
       <Button
         className="w-full"
-        size="lg"
         variant="outline"
         onClick={() => onHandleClick("github")}
       >
