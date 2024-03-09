@@ -37,8 +37,8 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex items-center ">
-      <div className="hidden lg:flex items-center gap-x-2">
+    <div className="flex items-center">
+      <div className="hidden lg:flex lg:absolute lg:top-[50%] lg:right-[50%] lg:translate-x-[50%] lg:translate-y-[-50%] items-center gap-x-2">
         {links.map((link) => {
           return (
             <Button key={link.title} asChild className="">
