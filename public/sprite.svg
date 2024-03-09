@@ -10,5 +10,10 @@
 <symbol id="icon-checkbox-circle" viewBox="0 0 32 32">
 <path fill="#3cbf61" style="fill: var(--color2, #3cbf61)" d="M16 29.333c-7.364 0-13.333-5.969-13.333-13.333s5.969-13.333 13.333-13.333c7.364 0 13.333 5.969 13.333 13.333s-5.969 13.333-13.333 13.333zM14.459 21.98l9.427-9.428-1.885-1.885-7.541 7.543-3.772-3.772-1.885 1.885 5.657 5.657z"></path>
 </symbol>
+<symbol id="icon-burger" viewBox="0 0 47 32">
+<path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9091" d="M8.537 5.333h36.553"></path>
+<path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9091" d="M8.537 24.727h36.553"></path>
+<path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.9091" d="M19.668 15.030h25.423"></path>
+</symbol>
 </defs>
 </svg>

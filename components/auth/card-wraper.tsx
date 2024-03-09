@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 
-import Header from "./header";
+import Header from "./card-header";
 import Socials from "./socials";
 
 interface ICardWrapperProps {
