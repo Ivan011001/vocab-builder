@@ -19,6 +19,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         inactive: "bg-transparent font-medium",
+        navbar: "bg-button text-primary",
+        navbarInactive: "bg-transparent font-medium text-button",
       },
       size: {
         default: "w-full h-14",
