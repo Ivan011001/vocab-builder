@@ -3,14 +3,22 @@ import Filters from "./filters";
 import Statistics from "./statistics";
 import TrainingLink from "./training-link";
 
+import { cn } from "@/lib/utils";
+
 interface IDashboardProps {
   addWord?: boolean;
+  isVerb?: boolean;
 }
 
-const Dashboard = ({ addWord }: IDashboardProps) => {
+const Dashboard = ({ addWord, isVerb }: IDashboardProps) => {
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-between items-center justify-between gap-10 md:gap-7">
-      <Filters />
+    <div
+      className={cn(
+        "flex flex-col lg:flex-row lg:justify-between items-center justify-between md:gap-7",
+        isVerb ? "gap-[16px]" : "gap-10"
+      )}
+    >
+      <Filters isVerb={isVerb} />
 
       <div className="w-full lg:w-auto flex flex-col md:flex-row gap-2 md:gap-4">
         <Statistics />

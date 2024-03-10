@@ -1,13 +1,14 @@
 "use client";
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 const Search = () => {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const handleSearch = (term: string) => {
+  const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
 
     if (term) {
@@ -17,7 +18,7 @@ const Search = () => {
     }
 
     replace(`${pathname}?${params.toString()}`);
-  };
+  }, 300);
 
   return (
     <div className="relative">
