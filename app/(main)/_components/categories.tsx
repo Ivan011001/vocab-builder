@@ -74,7 +74,7 @@ const Categories = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full py-3 px-6 space-y-2 overflow-auto rounded-md bg-white text-base ring-1 ring-black/5 focus:outline-none">
+            <Listbox.Options className="absolute mt-1 w-full py-3 px-6 space-y-2 overflow-auto rounded-md bg-white text-base ring-1 ring-black/5 focus:outline-none">
               {categories?.map((categorie) => (
                 <Listbox.Option
                   key={categorie.id}
