@@ -79,3 +79,8 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+model Categorie {
+  id    String @id @default(cuid())
+  name  String
+}
