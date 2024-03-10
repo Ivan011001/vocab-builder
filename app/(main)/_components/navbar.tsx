@@ -8,12 +8,12 @@ import UserButton from "@/components/auth/user-button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import { FaUser } from "react-icons/fa";
 
 const LINKS = [
   {
@@ -54,7 +54,7 @@ const Navbar = () => {
         })}
       </div>
 
-      <div className="flex items-center">
+      <div className="hidden lg:flex items-center">
         <UserButton />
       </div>
       <div className="lg:hidden md:ml-7 flex">
@@ -69,39 +69,37 @@ const Navbar = () => {
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent className="w-[185px] bg-accent flex flex-col items-center overflow-hidden">
-            <div className="flex float-start">
-              <SheetHeader className="flex flex-row items-top">
-                <div className="flex items-center">
-                  <p className="text-button text-base font-medium mr-2">
-                    Iryna
-                  </p>
-                  <div className="flex rounded-[50%] bg-white w-9 h-9"></div>
+          <SheetContent className="w-[185px] bg-accent overflow-hidden">
+            <SheetHeader className="flex flex-row items-baseline">
+              <div className="flex items-center">
+                <p className="text-button text-base font-medium mr-2">Iryna</p>
+                <div className="flex items-center justify-center rounded-[50%] bg-white w-9 h-9">
+                  <FaUser className="w-4 h-4" color="#85AA9F" />
                 </div>
-              </SheetHeader>
-            </div>
-            <SheetDescription>
+              </div>
+            </SheetHeader>
+            <div className="absolute top-[35%] left-4 translate-y-[-35%]">
               {LINKS.map((link) => {
                 return (
                   <Button
                     key={link.title}
                     asChild
-                    className="py-3 px-5 text-sm rounded-[15px] font-medium text-button"
-                    variant={link.href === pathname ? "default" : "inactive"}
+                    className="py-3 px-5 w-[110px] text-sm rounded-[15px] font-medium"
+                    variant={
+                      link.href === pathname ? "navbar" : "navbarInactive"
+                    }
                   >
                     <Link href={link.href}>{link.title}</Link>
                   </Button>
                 );
               })}
-            </SheetDescription>
-
-            <SheetFooter className="w-[363px] h-[318px] overflow-hidden">
+            </div>
+            <SheetFooter className="w-[363px] overflow-hidden">
               <Image
                 src="/reading.png"
                 alt="Boy and girl reading"
                 width={363}
                 height={318}
-                className="object-cover"
               />
             </SheetFooter>
           </SheetContent>
