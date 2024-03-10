@@ -14,44 +14,49 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+const LINKS = [
+  {
+    title: "Dictionary",
+    href: "/",
+  },
+  {
+    title: "Recommend",
+    href: "/recommend",
+  },
+  {
+    title: "Training",
+    href: "/training",
+  },
+  {
+    title: "Settings",
+    href: "/settings",
+  },
+];
+
 const Navbar = () => {
   const pathname = usePathname();
-
-  const links = [
-    {
-      title: "Dictionary",
-      href: "/",
-    },
-    {
-      title: "Recommend",
-      href: "/recommend",
-    },
-    {
-      title: "Training",
-      href: "/training",
-    },
-    {
-      title: "Settings",
-      href: "/settings",
-    },
-  ];
 
   return (
     <div className="flex items-center">
       <div className="hidden lg:flex lg:absolute lg:top-[50%] lg:right-[50%] lg:translate-x-[50%] lg:translate-y-[-50%] items-center gap-x-2">
-        {links.map((link) => {
+        {LINKS.map((link) => {
           return (
-            <Button key={link.title} asChild className="">
+            <Button
+              key={link.title}
+              asChild
+              className=""
+              variant={link.href === pathname ? "default" : "secondary"}
+            >
               <Link href={link.href}>{link.title}</Link>
             </Button>
           );
         })}
       </div>
 
-      <div className="flex items-center md:mr-7">
+      <div className="flex items-center">
         <UserButton />
       </div>
-      <div className="lg:hidden">
+      <div className="lg:hidden md:ml-7">
         <Sheet>
           <SheetTrigger asChild>
             <Button className="w-8 h-[22px] md:w-10 md:h-7 text-transparent bg-transparent outline-none">
