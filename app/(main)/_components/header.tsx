@@ -4,7 +4,7 @@ import Navbar from "./navbar";
 
 const Header = () => {
   return (
-    <header className="lg:relative flex bg-[#FFFFFF] w-full justify-between md:py-5 px-8">
+    <header className="lg:relative flex bg-[#FFFFFF] w-full justify-between p-4 md:py-5 md:px-8 lg:px-[100px]">
       <Logo />
       <Navbar />
     </header>
