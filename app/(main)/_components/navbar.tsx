@@ -44,8 +44,8 @@ const Navbar = () => {
             <Button
               key={link.title}
               asChild
-              className=""
-              variant={link.href === pathname ? "default" : "secondary"}
+              className="py-3 px-5 text-sm rounded-[15px] font-medium"
+              variant={link.href === pathname ? "default" : "inactive"}
             >
               <Link href={link.href}>{link.title}</Link>
             </Button>
