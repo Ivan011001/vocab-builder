@@ -9,10 +9,11 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Image from "next/image";
 
 const LINKS = [
   {
@@ -56,23 +57,53 @@ const Navbar = () => {
       <div className="flex items-center">
         <UserButton />
       </div>
-      <div className="lg:hidden md:ml-7">
+      <div className="lg:hidden md:ml-7 flex">
         <Sheet>
-          <SheetTrigger asChild>
-            <Button className="w-8 h-[22px] md:w-10 md:h-7 text-transparent bg-transparent outline-none">
+          <SheetTrigger asChild className="bg-transparent">
+            <Button
+              variant="inactive"
+              className="w-8 h-[22px] md:w-10 md:h-7 text-transparent bg-transparent outline-none"
+            >
               <svg className="w-8 h-[22px] md:w-10 md:h-7 stroke-primary">
                 <use xlinkHref="/sprite.svg#icon-burger"></use>
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent className="w-[185px]">
-            <SheetHeader>
-              <SheetTitle>Are you absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </SheetDescription>
-            </SheetHeader>
+          <SheetContent className="w-[185px] bg-accent flex flex-col items-center overflow-hidden">
+            <div className="flex float-start">
+              <SheetHeader className="flex flex-row items-top">
+                <div className="flex items-center">
+                  <p className="text-button text-base font-medium mr-2">
+                    Iryna
+                  </p>
+                  <div className="flex rounded-[50%] bg-white w-9 h-9"></div>
+                </div>
+              </SheetHeader>
+            </div>
+            <SheetDescription>
+              {LINKS.map((link) => {
+                return (
+                  <Button
+                    key={link.title}
+                    asChild
+                    className="py-3 px-5 text-sm rounded-[15px] font-medium text-button"
+                    variant={link.href === pathname ? "default" : "inactive"}
+                  >
+                    <Link href={link.href}>{link.title}</Link>
+                  </Button>
+                );
+              })}
+            </SheetDescription>
+
+            <SheetFooter className="w-[363px] h-[318px] overflow-hidden">
+              <Image
+                src="/reading.png"
+                alt="Boy and girl reading"
+                width={363}
+                height={318}
+                className="object-cover"
+              />
+            </SheetFooter>
           </SheetContent>
         </Sheet>
       </div>
