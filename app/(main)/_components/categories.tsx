@@ -45,6 +45,12 @@ const Categories = () => {
       return;
     }
 
+    if (name !== "verb") {
+      params.delete("verbType");
+    } else {
+      params.set("verbType", "regular");
+    }
+
     if (name) {
       params.set("categorie", name);
     } else {
