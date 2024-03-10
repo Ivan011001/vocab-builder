@@ -1,13 +1,12 @@
-import { Button } from "@/components/ui/button";
+import AddWordForm from "./add-word.form";
+
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 
 const AddWordButton = () => {
@@ -29,23 +28,8 @@ const AddWordButton = () => {
             enriching the language base and expanding the vocabulary.
           </DialogDescription>
         </DialogHeader>
-        <div className="mb-8">Dialog Body</div>
-        <DialogFooter>
-          <div className="flex gap-x-2">
-            <Button
-              variant="outline"
-              className="shadow-none hover:text-neutral-50 hover:bg-accent transition-all duration-300"
-            >
-              Add
-            </Button>
 
-            <DialogClose asChild>
-              <Button className="shadow-none border border-white border-opacity-40 hover:text-neutral-900 hover:bg-neutral-50 transition-all duration-300">
-                Cancel
-              </Button>
-            </DialogClose>
-          </div>
-        </DialogFooter>
+        <AddWordForm />
       </DialogContent>
     </Dialog>
   );
