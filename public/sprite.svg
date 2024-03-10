@@ -30,5 +30,9 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M28 28l-5.8-5.8"></path>
 </symbol>
+<symbol id="icon-cross" viewBox="0 0 32 32">
+<path fill="none" stroke="#fcfcfc" style="stroke: var(--color1, #fcfcfc)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.3333" d="M24 8l-16 16"></path>
+<path fill="none" stroke="#fcfcfc" style="stroke: var(--color1, #fcfcfc)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.3333" d="M8 8l16 16"></path>
+</symbol>
 </defs>
 </svg>
