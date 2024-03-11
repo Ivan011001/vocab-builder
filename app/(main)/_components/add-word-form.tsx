@@ -122,7 +122,7 @@ const AddWordForm = () => {
                         <RadioGroupItem
                           value="regular"
                           id="regular-form"
-                          className="border-neutral-50"
+                          className="border-neutral-50 [&_div]:bg-neutral-50"
                         />
                         <Label
                           htmlFor="regular-form"
@@ -135,7 +135,7 @@ const AddWordForm = () => {
                         <RadioGroupItem
                           value="irregular"
                           id="irregular-form"
-                          className="border-neutral-50"
+                          className="border-neutral-50 [&_div]:bg-neutral-50"
                         />
                         <Label
                           htmlFor="irregular-form"

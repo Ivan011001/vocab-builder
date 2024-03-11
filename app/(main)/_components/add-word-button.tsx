@@ -1,4 +1,4 @@
-import AddWordForm from "./add-word.form";
+import AddWordForm from "./add-word-form";
 
 import {
   Dialog,
