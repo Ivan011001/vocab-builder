@@ -19,7 +19,6 @@ import {
   FormControl,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -52,10 +51,6 @@ const AddWordForm = () => {
     fetch();
   });
 
-  useEffect(() => {
-    console.log(isPending);
-  }, [isPending]);
-
   const form = useForm<z.infer<typeof addWordSchema>>({
     resolver: zodResolver(addWordSchema),
     defaultValues: {
@@ -68,17 +63,9 @@ const AddWordForm = () => {
 
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
     startTransition(() => {
-      addWord(values)
-        .then((data) => {
-          if (data?.error) {
-            form.reset();
-          }
-
-          if (data?.success) {
-            form.reset();
-          }
-        })
-        .catch(() => {});
+      addWord(values).then((data) => {
+        form.reset();
+      });
     });
   };
 
@@ -91,10 +78,10 @@ const AddWordForm = () => {
             name="categorie"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange}>
+                <Select onValueChange={field.onChange} disabled={isPending}>
                   <FormControl>
                     <SelectTrigger className="px-6 py-3 md:w-[208px] text-neutral-50 rounded-[15px]">
-                      <SelectValue placeholder="Categorie" />
+                      <SelectValue placeholder="Categories" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="md:w-[208px]">
