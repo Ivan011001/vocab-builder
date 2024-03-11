@@ -19,6 +19,7 @@ import {
   FormControl,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -123,7 +124,7 @@ const AddWordForm = () => {
                       defaultValue={field.value}
                       className="flex gap-x-4"
                     >
-                      <FormItem className="flex items-center gap-x-2">
+                      <FormItem className="flex items-center gap-x-2 space-y-0">
                         <FormControl>
                           <RadioGroupItem
                             value="regular"
@@ -134,7 +135,7 @@ const AddWordForm = () => {
                           Regular
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center gap-x-2">
+                      <FormItem className="flex items-center gap-x-2 space-y-0">
                         <FormControl>
                           <RadioGroupItem
                             value="irregular"
@@ -148,6 +149,12 @@ const AddWordForm = () => {
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
+                  {form.getValues("verbType") === "irregular" && (
+                    <p className="text-xs font-normal leading-3 text-neutral-50">
+                      Such data must be entered in the format I form-II form-III
+                      form.
+                    </p>
+                  )}
                 </FormItem>
               )}
             />

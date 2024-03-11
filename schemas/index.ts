@@ -114,4 +114,14 @@ export const addWordSchema = z
       return true;
     },
     { message: "Categorie is required", path: ["categorie"] }
+  )
+  .refine(
+    (data) => {
+      if (!data.verbType && data.categorie === "verb") {
+        return false;
+      }
+
+      return true;
+    },
+    { message: "Verb type is required", path: ["verbType"] }
   );
