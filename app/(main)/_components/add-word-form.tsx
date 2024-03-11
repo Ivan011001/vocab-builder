@@ -39,6 +39,7 @@ import { capitalizeWord } from "@/helpers";
 
 const AddWordForm = () => {
   const [categories, setCategories] = useState<ICategorie[] | null>([]);
+
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const AddWordForm = () => {
     resolver: zodResolver(addWordSchema),
     defaultValues: {
       categorie: "",
-      verbType: "regular",
+      verbType: "",
       ua: "",
       en: "",
     },
@@ -62,13 +63,17 @@ const AddWordForm = () => {
 
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
     startTransition(() => {
-      addWord(values).then((data) => {
-        if (data?.success) {
-          form.reset();
-        }
+      addWord(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset();
+          }
 
-        return;
-      });
+          if (data?.success) {
+            form.reset();
+          }
+        })
+        .catch(() => {});
     });
   };
 
@@ -115,35 +120,31 @@ const AddWordForm = () => {
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      className="flex items-center gap-x-4"
-                      defaultValue="regular"
+                      defaultValue={field.value}
+                      className="flex gap-x-4"
                     >
-                      <div className="flex items-center gap-x-2">
-                        <RadioGroupItem
-                          value="regular"
-                          id="regular-form"
-                          className="border-neutral-50 [&_div]:bg-neutral-50"
-                        />
-                        <Label
-                          htmlFor="regular-form"
-                          className="text-neutral-50 text-xs md:text-sm font-normal"
-                        >
+                      <FormItem className="flex items-center gap-x-2">
+                        <FormControl>
+                          <RadioGroupItem
+                            value="regular"
+                            className="border-neutral-50 [&_div]:bg-neutral-50"
+                          />
+                        </FormControl>
+                        <FormLabel className="mt-0 font-normal text-neutral-50 text-base">
                           Regular
-                        </Label>
-                      </div>
-                      <div className="flex items-center gap-x-2">
-                        <RadioGroupItem
-                          value="irregular"
-                          id="irregular-form"
-                          className="border-neutral-50 [&_div]:bg-neutral-50"
-                        />
-                        <Label
-                          htmlFor="irregular-form"
-                          className="text-neutral-50 text-xs md:text-sm font-normal"
-                        >
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center gap-x-2">
+                        <FormControl>
+                          <RadioGroupItem
+                            value="irregular"
+                            className="border-neutral-50 [&_div]:bg-neutral-50"
+                          />
+                        </FormControl>
+                        <FormLabel className="block mt-0 font-normal text-neutral-50 text-base">
                           Irregular
-                        </Label>
-                      </div>
+                        </FormLabel>
+                      </FormItem>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />

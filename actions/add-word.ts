@@ -10,10 +10,6 @@ export const addWord = async (values: z.infer<typeof addWordSchema>) => {
     return { error: "Invalid fileds!" };
   }
 
-  if (validatedFileds.data.categorie === "verb") {
-    validatedFileds.data.verbType = "";
-  }
-
   console.log(validatedFileds.data);
   return { success: "Word was added!" };
 };
