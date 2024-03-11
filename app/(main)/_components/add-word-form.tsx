@@ -23,6 +23,7 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -38,6 +39,7 @@ import { capitalizeWord } from "@/helpers";
 
 const AddWordForm = () => {
   const [categories, setCategories] = useState<ICategorie[] | null>([]);
+
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const AddWordForm = () => {
     resolver: zodResolver(addWordSchema),
     defaultValues: {
       categorie: "",
-      verbType: "regular",
+      verbType: "",
       ua: "",
       en: "",
     },
@@ -62,11 +64,7 @@ const AddWordForm = () => {
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
     startTransition(() => {
       addWord(values).then((data) => {
-        if (data?.success) {
-          form.reset();
-        }
-
-        return;
+        form.reset();
       });
     });
   };
@@ -80,22 +78,24 @@ const AddWordForm = () => {
             name="categorie"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange}>
+                <Select onValueChange={field.onChange} disabled={isPending}>
                   <FormControl>
-                    <SelectTrigger className="px-6 py-3 md:w-[208px]">
-                      <SelectValue placeholder="Categorie" />
+                    <SelectTrigger className="px-6 py-3 md:w-[208px] text-neutral-50 rounded-[15px]">
+                      <SelectValue placeholder="Categories" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="">
-                    {categories?.map((categorie) => (
-                      <SelectItem
-                        className="text-neutral-900 text-opacity-50 text-base font-medium leading-normal"
-                        value={categorie.name}
-                        key={categorie.id}
-                      >
-                        {capitalizeWord(categorie.name)}
-                      </SelectItem>
-                    ))}
+                  <SelectContent className="md:w-[208px]">
+                    <SelectGroup className="flex flex-col gap-2 px-6 py-3">
+                      {categories?.map((categorie) => (
+                        <SelectItem
+                          className="text-neutral-900 text-opacity-50 text-base font-medium leading-normal"
+                          value={categorie.name}
+                          key={categorie.id}
+                        >
+                          {capitalizeWord(categorie.name)}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -112,38 +112,40 @@ const AddWordForm = () => {
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
-                      className="flex items-center gap-x-4"
-                      defaultValue="regular"
+                      defaultValue={field.value}
+                      className="flex gap-x-4"
                     >
-                      <div className="flex items-center gap-x-2">
-                        <RadioGroupItem
-                          value="regular"
-                          id="regular-form"
-                          className="border-neutral-50"
-                        />
-                        <Label
-                          htmlFor="regular-form"
-                          className="text-neutral-50 text-xs md:text-sm font-normal"
-                        >
+                      <FormItem className="flex items-center gap-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem
+                            value="regular"
+                            className="border-neutral-50 [&_div]:bg-neutral-50"
+                          />
+                        </FormControl>
+                        <FormLabel className="mt-0 font-normal text-neutral-50 text-base">
                           Regular
-                        </Label>
-                      </div>
-                      <div className="flex items-center gap-x-2">
-                        <RadioGroupItem
-                          value="irregular"
-                          id="irregular-form"
-                          className="border-neutral-50"
-                        />
-                        <Label
-                          htmlFor="irregular-form"
-                          className="text-neutral-50 text-xs md:text-sm font-normal"
-                        >
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center gap-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem
+                            value="irregular"
+                            className="border-neutral-50 [&_div]:bg-neutral-50"
+                          />
+                        </FormControl>
+                        <FormLabel className="block mt-0 font-normal text-neutral-50 text-base">
                           Irregular
-                        </Label>
-                      </div>
+                        </FormLabel>
+                      </FormItem>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
+                  {form.getValues("verbType") === "irregular" && (
+                    <p className="text-xs font-normal leading-3 text-neutral-50">
+                      Such data must be entered in the format I form-II form-III
+                      form.
+                    </p>
+                  )}
                 </FormItem>
               )}
             />

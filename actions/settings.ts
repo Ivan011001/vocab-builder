@@ -34,7 +34,6 @@ export const settings = async (values: z.infer<typeof settingsSchema>) => {
 
   if (values.email && values.email !== user.email) {
     const existingUser = await findUserByEmail(values.email!);
-    console.log(existingUser);
 
     if (existingUser && existingUser.id !== user.id) {
       return { error: "Email already in use!" };

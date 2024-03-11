@@ -46,12 +46,19 @@ const LoginForm = () => {
 
     startTransition(() => {
       register(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        if (data.error) {
+          setError(data.error);
+
+          form.reset();
+        }
+
+        if (data.success) {
+          setSuccess(data.success);
+
+          form.reset();
+        }
       });
     });
-
-    form.reset();
   };
 
   return (

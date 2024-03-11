@@ -3,6 +3,8 @@
 import * as z from "zod";
 import { addWordSchema } from "@/schemas";
 
+import { db } from "@/lib/db";
+
 export const addWord = async (values: z.infer<typeof addWordSchema>) => {
   const validatedFileds = addWordSchema.safeParse(values);
 
@@ -10,10 +12,7 @@ export const addWord = async (values: z.infer<typeof addWordSchema>) => {
     return { error: "Invalid fileds!" };
   }
 
-  if (validatedFileds.data.categorie === "verb") {
-    validatedFileds.data.verbType = "";
-  }
+  await db.categorie.findMany();
 
-  console.log(validatedFileds.data);
   return { success: "Word was added!" };
 };
