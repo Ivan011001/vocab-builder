@@ -25,12 +25,14 @@ const VerbType = () => {
     <RadioGroup
       className="flex items-center gap-x-4"
       defaultValue={searchParams.get("verbType")?.toString()}
+      onValueChange={onHandleChange}
     >
-      <div
-        className="flex items-center gap-x-2"
-        onClick={() => onHandleChange("regular")}
-      >
-        <RadioGroupItem value="regular" id="regular" />
+      <div className="flex items-center gap-x-2">
+        <RadioGroupItem
+          value="regular"
+          id="regular"
+          className="[&_div]:bg-gray-400"
+        />
         <Label
           htmlFor="regular"
           className="text-neutral-900 text-xs md:text-sm font-normal"
@@ -38,11 +40,12 @@ const VerbType = () => {
           Regular
         </Label>
       </div>
-      <div
-        className="flex items-center gap-x-2"
-        onClick={() => onHandleChange("irregular")}
-      >
-        <RadioGroupItem value="irregular" id="irregular" />
+      <div className="flex items-center gap-x-2">
+        <RadioGroupItem
+          value="irregular"
+          id="irregular"
+          className="[&_div]:bg-gray-400"
+        />
         <Label
           htmlFor="irregular"
           className="text-neutral-900 text-xs md:text-sm font-normal"
