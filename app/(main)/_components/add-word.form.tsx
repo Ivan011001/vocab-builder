@@ -23,6 +23,7 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -82,20 +83,22 @@ const AddWordForm = () => {
               <FormItem>
                 <Select onValueChange={field.onChange}>
                   <FormControl>
-                    <SelectTrigger className="px-6 py-3 md:w-[208px]">
+                    <SelectTrigger className="px-6 py-3 md:w-[208px] text-neutral-50 rounded-[15px]">
                       <SelectValue placeholder="Categorie" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="">
-                    {categories?.map((categorie) => (
-                      <SelectItem
-                        className="text-neutral-900 text-opacity-50 text-base font-medium leading-normal"
-                        value={categorie.name}
-                        key={categorie.id}
-                      >
-                        {capitalizeWord(categorie.name)}
-                      </SelectItem>
-                    ))}
+                  <SelectContent className="md:w-[208px]">
+                    <SelectGroup className="flex flex-col gap-2 px-6 py-3">
+                      {categories?.map((categorie) => (
+                        <SelectItem
+                          className="text-neutral-900 text-opacity-50 text-base font-medium leading-normal"
+                          value={categorie.name}
+                          key={categorie.id}
+                        >
+                          {capitalizeWord(categorie.name)}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
                 <FormMessage />
