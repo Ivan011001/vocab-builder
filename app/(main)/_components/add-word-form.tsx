@@ -52,6 +52,10 @@ const AddWordForm = () => {
     fetch();
   });
 
+  useEffect(() => {
+    console.log(isPending);
+  }, [isPending]);
+
   const form = useForm<z.infer<typeof addWordSchema>>({
     resolver: zodResolver(addWordSchema),
     defaultValues: {
