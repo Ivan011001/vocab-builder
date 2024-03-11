@@ -25,13 +25,13 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex w-full items-center justify-between whitespace-nowrap rounded-[15px] text-neutral-50 text-base  leading-normal border border-gray-300 bg-transparent ring-offset-background focus:outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex w-full items-center justify-between gap-x-3 whitespace-nowrap text-base  leading-normal border border-gray-300 bg-transparent ring-offset-background focus:outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className
     )}
     {...props}
   >
     {children}
-    <FaChevronDown className="h-4 w-4 text-neutral-50" aria-hidden="true" />
+    <FaChevronDown className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
   </SelectPrimitive.Trigger>
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
