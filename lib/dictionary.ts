@@ -3,7 +3,7 @@ import { db } from "./db";
 export const getUserDictionary = async (userId: string | null | undefined) => {
   try {
     if (!userId) {
-      return;
+      return null;
     }
 
     const dictionary = await db.word.findMany({
