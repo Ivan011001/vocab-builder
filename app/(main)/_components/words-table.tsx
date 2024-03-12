@@ -26,8 +26,8 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
     <div className="md:bg-white md:p-[18px] md:rounded-[15px]">
       <Table>
         <TableHeader className="bg-gray-400 bg-opacity-10">
-          <TableRow>
-            <TableHead className="border-r border-zinc-300 rounded-tl-[15px]">
+          <TableRow className="[&>*]:border-r [&>*]:border-zinc-300">
+            <TableHead className="rounded-tl-[15px] ">
               <div className="flex items-center justify-between">
                 Word
                 <svg className="hidden md:block w-8 h-8">
@@ -36,7 +36,7 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
               </div>
             </TableHead>
 
-            <TableHead className="border-r border-zinc-300">
+            <TableHead>
               <div className="flex items-center justify-between">
                 Translation
                 <svg className="hidden md:block w-8 h-8">
@@ -45,15 +45,13 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
               </div>
             </TableHead>
 
-            <TableHead className="border-r border-zinc-300">Category</TableHead>
+            <TableHead>Category</TableHead>
 
-            {isDictionary && (
-              <TableHead className="border-r border-zinc-300">
-                Progress
-              </TableHead>
-            )}
+            {isDictionary && <TableHead>Progress</TableHead>}
 
-            <TableHead className="rounded-tr-[15px]">{""}</TableHead>
+            <TableHead className="rounded-tr-[15px] border-none">
+              {""}
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="bg-neutral-50 rounded-[15px]">

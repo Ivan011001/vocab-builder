@@ -2,7 +2,7 @@
 
 const AddDictionary = () => {
   return (
-    <button className="flex flex-col gap-[2px]">
+    <button className="flex flex-wrap gap-x-2 gap-y-[2px]">
       <p className="hidden md:block text-neutral-900 text-sm font-medium text-start">
         Add to dictionary
       </p>
