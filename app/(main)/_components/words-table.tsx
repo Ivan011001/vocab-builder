@@ -7,14 +7,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { IDictionary, IRecommend } from "@/types";
 
 interface IWordsTableProps {
-  words: {
-    word: string;
-    translation: string;
-    categorie: string;
-    progress?: string;
-  }[];
+  words: (IRecommend | IDictionary)[] | null; // Adjusted the type to union of IRecommend and IDictionary
   isDictionary?: boolean;
 }
 
@@ -54,9 +50,9 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody className="bg-neutral-50 rounded-[15px]">
-          {words.map(({ word, translation, categorie, progress }, index) => (
+          {words?.map((wordItem, index) => (
             <TableRow
-              key={word}
+              key={wordItem.id} // Adjusted the key to use a property common to both IRecommend and IDictionary
               className="[&_td]:border-r [&_td]:border-zinc-300"
               //md:[&_td]:last:border-b md:[&_td]:last:border-zinc-300
             >
@@ -66,11 +62,15 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                   index === words.length - 1 && "rounded-bl-[15px]"
                 )}
               >
-                {word}
+                {wordItem.word}
               </TableCell>
-              <TableCell>{translation}</TableCell>
-              <TableCell>{categorie}</TableCell>
-              {isDictionary && <TableCell>{progress}</TableCell>}
+              <TableCell>{wordItem.translation}</TableCell>
+              <TableCell>{wordItem.category}</TableCell>
+
+              {isDictionary && "progress" in wordItem && (
+                <TableCell>{(wordItem as IDictionary).progress}</TableCell>
+              )}
+
               <TableCell
                 className={cn(
                   "text-center  last:border-r-0",

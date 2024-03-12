@@ -3,23 +3,26 @@ import WordsTable from "./_components/words-table";
 
 const words = [
   {
+    id: "1",
     word: "A little bit",
     translation: "Трохи, трішки",
-    categorie: "Phrasal verb",
+    category: "Phrasal verb",
     progress: "50",
   },
 
   {
+    id: "2",
     word: "Break in",
     translation: "Вмішуватися, встрявати",
-    categorie: "Phrasal verb",
+    category: "Phrasal verb",
     progress: "70",
   },
 
   {
+    id: "3",
     word: "Care",
     translation: "Турбота, догляд",
-    categorie: "Verb",
+    category: "Verb",
     progress: "30",
   },
 ];
