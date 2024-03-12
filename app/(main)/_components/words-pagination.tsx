@@ -10,6 +10,8 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  PaginationDoublePrevious,
+  PaginationDoubleNext,
 } from "@/components/ui/pagination";
 
 import { IMetaPagination } from "@/types";
@@ -38,24 +40,65 @@ const WordsPagination = ({ meta }: IWordsPaginationProps) => {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href={createPageURL(currentPage - 1)} />
+          <PaginationDoublePrevious
+            href={createPageURL(currentPage - 3)}
+            disabled={!hasPrevPage || currentPage - 3 <= 0}
+          />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href={createPageURL(currentPage)}>
+          <PaginationPrevious
+            href={createPageURL(currentPage - 1)}
+            disabled={!hasPrevPage || currentPage - 1 <= 0}
+          />
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href={createPageURL(currentPage)} isActive>
             {currentPage}
           </PaginationLink>
         </PaginationItem>
 
+        {hasNextPage && (
+          <PaginationItem>
+            <PaginationLink href={createPageURL(currentPage + 1)}>
+              {currentPage + 1}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
+        {currentPage + 1 < totalPages && (
+          <PaginationItem className="hidden md:block">
+            <PaginationLink href={createPageURL(currentPage + 2)}>
+              {currentPage + 2}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
+        {currentPage + 2 < totalPages && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+
+        {currentPage + 3 < totalPages && (
+          <PaginationItem>
+            <PaginationLink href={createPageURL(totalPages)}>
+              {totalPages}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
         <PaginationItem>
-          <PaginationEllipsis />
+          <PaginationNext
+            href={createPageURL(currentPage + 1)}
+            disabled={!hasNextPage || currentPage + 1 > totalPages}
+          />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href={createPageURL(totalPages)}>
-            {totalPages}
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href={createPageURL(currentPage + 1)} />
+          <PaginationDoubleNext
+            href={createPageURL(currentPage + 3)}
+            disabled={!hasNextPage || currentPage + 3 > totalPages}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
