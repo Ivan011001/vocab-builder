@@ -9,23 +9,25 @@ const DictionaryPage = async ({
   searchParams,
 }: {
   searchParams?: {
-    categorie?: string;
+    category?: string;
     search?: string;
+    page?: string;
   };
 }) => {
   const user = await currentUser();
 
-  const categorie = searchParams?.categorie || "";
+  const category = searchParams?.category || "";
   const search = searchParams?.search || "";
+  const page = Number(searchParams?.page) || 1;
 
-  const words = await getUserDictionary(user?.id);
+  const response = await getUserDictionary(user?.id, search, category, page);
 
-  const isVerb = categorie === "verb";
+  const isVerb = category === "verb";
 
   return (
     <div className="flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard addWord isVerb={isVerb} />
-      <WordsTable isDictionary words={words} />
+      <WordsTable isDictionary words={response?.data!} />
     </div>
   );
 };

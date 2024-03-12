@@ -14,7 +14,7 @@ import {
 
 import { getCategories } from "@/data/categories";
 
-import { ICategorie } from "@/types";
+import { ICategory } from "@/types";
 
 import { capitalizeWord } from "@/helpers";
 
@@ -23,7 +23,7 @@ const Categories = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [categories, setCategories] = useState<ICategorie[] | null>([]);
+  const [categories, setCategories] = useState<ICategory[] | null>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -38,24 +38,24 @@ const Categories = () => {
   const onHandleChange = (data: string) => {
     const params = new URLSearchParams(searchParams);
 
-    if (data === "all") {
-      params.delete("categorie");
-
-      replace(`${pathname}?${params.toString()}`);
-
-      return;
-    }
-
     if (data !== "verb") {
       params.delete("verbType");
     } else {
       params.set("verbType", "regular");
     }
 
+    if (data === "all") {
+      params.delete("category");
+
+      replace(`${pathname}?${params.toString()}`);
+
+      return;
+    }
+
     if (data) {
-      params.set("categorie", data);
+      params.set("category", data);
     } else {
-      params.delete("categorie");
+      params.delete("category");
     }
 
     replace(`${pathname}?${params.toString()}`);
@@ -68,9 +68,9 @@ const Categories = () => {
       </SelectTrigger>
       <SelectContent className="md:w-40">
         <SelectGroup className="flex flex-col gap-2 px-6 py-3">
-          {categories?.map((categorie) => (
-            <SelectItem value={categorie.name} key={categorie.id}>
-              {capitalizeWord(categorie.name)}
+          {categories?.map(({ name, id }) => (
+            <SelectItem value={name} key={id}>
+              {capitalizeWord(name)}
             </SelectItem>
           ))}
 

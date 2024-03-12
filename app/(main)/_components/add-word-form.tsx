@@ -33,12 +33,12 @@ import { DialogClose } from "@/components/ui/dialog";
 import { addWord } from "@/actions/add-word";
 import { getCategories } from "@/data/categories";
 
-import { ICategorie } from "@/types";
+import { ICategory } from "@/types";
 
 import { capitalizeWord } from "@/helpers";
 
 const AddWordForm = () => {
-  const [categories, setCategories] = useState<ICategorie[] | null>([]);
+  const [categories, setCategories] = useState<ICategory[] | null>([]);
 
   const [isPending, startTransition] = useTransition();
 
@@ -88,13 +88,13 @@ const AddWordForm = () => {
                   </FormControl>
                   <SelectContent className="md:w-[208px]">
                     <SelectGroup className="flex flex-col gap-2 px-6 py-3">
-                      {categories?.map((categorie) => (
+                      {categories?.map(({ name, id }) => (
                         <SelectItem
                           className="text-neutral-900 text-opacity-50 text-base font-medium leading-normal"
-                          value={categorie.name}
-                          key={categorie.id}
+                          value={name}
+                          key={id}
                         >
-                          {capitalizeWord(categorie.name)}
+                          {capitalizeWord(name)}
                         </SelectItem>
                       ))}
                     </SelectGroup>
