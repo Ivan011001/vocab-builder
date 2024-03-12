@@ -38,6 +38,8 @@ const Categories = () => {
   const onHandleChange = (data: string) => {
     const params = new URLSearchParams(searchParams);
 
+    params.delete("page");
+
     if (data !== "verb") {
       params.delete("verbType");
     } else {
