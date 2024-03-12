@@ -1,22 +1,16 @@
+import { db } from "@/lib/db";
 import { Prisma } from "@prisma/client";
-import { db } from "./db";
 
-export const getUserDictionary = async (
-  userId: string | null | undefined,
+export const getRecommend = async (
   search: string,
   category: string,
   page: number
 ) => {
   try {
-    if (!userId) {
-      return null;
-    }
-
     const skip = (page - 1) * 7;
 
     const totalCount = await db.word.count({
       where: {
-        userId,
         category: {
           equals: category,
           mode: "insensitive",
@@ -28,8 +22,7 @@ export const getUserDictionary = async (
       },
     });
 
-    const whereClause: Prisma.WordWhereInput = {
-      userId,
+    const whereClause: Prisma.RecommendWhereInput = {
       word: {
         contains: search,
         mode: "insensitive",
@@ -43,7 +36,7 @@ export const getUserDictionary = async (
       };
     }
 
-    const dictionary = await db.word.findMany({
+    const dictionary = await db.recommend.findMany({
       take: 7,
       skip,
       where: whereClause,
