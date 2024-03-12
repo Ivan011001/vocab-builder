@@ -1,4 +1,5 @@
 import Dashboard from "./_components/dashboard";
+import WordsPagination from "./_components/words-pagination";
 import WordsTable from "./_components/words-table";
 
 import { currentUser } from "@/lib/auth";
@@ -25,9 +26,12 @@ const DictionaryPage = async ({
   const isVerb = category === "verb";
 
   return (
-    <div className="flex flex-col gap-y-8 md:gap-y-7">
+    <div className="h-full flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard addWord isVerb={isVerb} />
-      <WordsTable isDictionary words={response?.data!} />
+      <div className="flex-grow-1 h-full">
+        <WordsTable isDictionary words={response?.data!} />
+      </div>
+      <WordsPagination meta={response?.meta!} />
     </div>
   );
 };
