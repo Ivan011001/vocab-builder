@@ -17,3 +17,11 @@ export interface IDictionary {
   category: string;
   progress: number;
 }
+
+export interface IMetaPagination {
+  totalCount: number;
+  totalPages: number;
+  currentPage: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+}
