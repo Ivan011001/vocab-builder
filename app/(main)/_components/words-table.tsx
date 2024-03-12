@@ -72,9 +72,7 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
               <TableCell>{capitalizeWord(wordItem.category)}</TableCell>
 
               {isDictionary && "progress" in wordItem && (
-                <TableCell>
-                  {capitalizeWord((wordItem as IDictionary).progress)}
-                </TableCell>
+                <TableCell>{(wordItem as IDictionary).progress}</TableCell>
               )}
 
               <TableCell
