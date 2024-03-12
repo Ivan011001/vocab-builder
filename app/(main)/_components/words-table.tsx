@@ -1,3 +1,5 @@
+import ActionsButton from "./actions-button";
+
 import {
   Table,
   TableBody,
@@ -12,9 +14,10 @@ import { IDictionary, IRecommend } from "@/types";
 import { capitalizeWord } from "@/helpers";
 
 import { cn } from "@/lib/utils";
+import AddDictionary from "./add-dictionary";
 
 interface IWordsTableProps {
-  words: (IRecommend | IDictionary)[] | null; // Adjusted the type to union of IRecommend and IDictionary
+  words: (IRecommend | IDictionary)[] | null;
   isDictionary?: boolean;
 }
 
@@ -81,7 +84,7 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                   index === words.length - 1 && "rounded-br-[15px]"
                 )}
               >
-                ...
+                {isDictionary ? <ActionsButton /> : <AddDictionary />}
               </TableCell>
             </TableRow>
           ))}
