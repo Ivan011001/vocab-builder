@@ -14,20 +14,6 @@ export const getUserDictionary = async (
 
     const skip = (page - 1) * 7;
 
-    const totalCount = await db.word.count({
-      where: {
-        userId,
-        category: {
-          equals: category,
-          mode: "insensitive",
-        },
-        word: {
-          contains: search,
-          mode: "insensitive",
-        },
-      },
-    });
-
     const whereClause: Prisma.WordWhereInput = {
       userId,
       word: {
@@ -43,12 +29,17 @@ export const getUserDictionary = async (
       };
     }
 
+    const totalCount = await db.word.count({
+      where: whereClause,
+    });
+
     const dictionary = await db.word.findMany({
       take: 7,
       skip,
       where: whereClause,
     });
 
+    const totalPages = Math.ceil(totalCount / 7);
     const hasPrevPage = page > 1;
     const hasNextPage = skip + dictionary.length < totalCount;
 
@@ -57,6 +48,7 @@ export const getUserDictionary = async (
       meta: {
         totalCount,
         currentPage: page,
+        totalPages,
         hasPrevPage,
         hasNextPage,
       },

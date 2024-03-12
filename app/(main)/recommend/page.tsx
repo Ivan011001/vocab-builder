@@ -1,4 +1,5 @@
 import Dashboard from "../_components/dashboard";
+import WordsPagination from "../_components/words-pagination";
 import WordsTable from "../_components/words-table";
 
 import { getRecommend } from "@/lib/recommend";
@@ -19,9 +20,12 @@ const RecommendPage = async ({
   const response = await getRecommend(search, category, page);
 
   return (
-    <div className="flex flex-col gap-y-8 md:gap-y-7">
+    <div className="h-full flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard />
-      <WordsTable words={response?.data!} />
+      <div className="flex-grow-1 h-full">
+        <WordsTable words={response?.data!} />
+      </div>
+      <WordsPagination meta={response?.meta!} />
     </div>
   );
 };
