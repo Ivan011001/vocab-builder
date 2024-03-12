@@ -85,7 +85,7 @@ export const settingsSchema = z
 
 export const addWordSchema = z
   .object({
-    categorie: z.string(),
+    category: z.string(),
     verbType: z.string(),
     en: z
       .string()
@@ -107,17 +107,17 @@ export const addWordSchema = z
   })
   .refine(
     (data) => {
-      if (!data.categorie) {
+      if (!data.category) {
         return false;
       }
 
       return true;
     },
-    { message: "Categorie is required", path: ["categorie"] }
+    { message: "Category is required", path: ["category"] }
   )
   .refine(
     (data) => {
-      if (!data.verbType && data.categorie === "verb") {
+      if (!data.verbType && data.category === "verb") {
         return false;
       }
 

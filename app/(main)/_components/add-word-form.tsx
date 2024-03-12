@@ -54,7 +54,7 @@ const AddWordForm = () => {
   const form = useForm<z.infer<typeof addWordSchema>>({
     resolver: zodResolver(addWordSchema),
     defaultValues: {
-      categorie: "",
+      category: "",
       verbType: "",
       ua: "",
       en: "",
@@ -75,7 +75,7 @@ const AddWordForm = () => {
         <div className="space-y-[14px] md:space-y-[18px]">
           <FormField
             control={form.control}
-            name="categorie"
+            name="category"
             render={({ field }) => (
               <FormItem>
                 <Select onValueChange={field.onChange} disabled={isPending}>
@@ -103,7 +103,7 @@ const AddWordForm = () => {
             )}
           />
 
-          {form.getValues("categorie") === "verb" && (
+          {form.getValues("category") === "verb" && (
             <FormField
               control={form.control}
               name="verbType"
