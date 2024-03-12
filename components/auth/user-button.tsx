@@ -14,6 +14,7 @@ import { AvatarFallback, Avatar, AvatarImage } from "../ui/avatar";
 
 import { FaUser } from "react-icons/fa";
 import { ExitIcon } from "@radix-ui/react-icons";
+import { capitalizeWord } from "@/helpers";
 
 const UserButton = () => {
   const user = useCurrentUser();
@@ -21,13 +22,13 @@ const UserButton = () => {
   return (
     <DropdownMenu>
       <p className="text-primary text-base md:text-xl md:mr-4 font-medium mr-2">
-        Iryna
+        {capitalizeWord(user?.name)}
       </p>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="focus-visible:outline-none">
         <Avatar className="w-9 h-9 md:w-12 md:h-12 mr-2 md:mr-0">
           <AvatarImage src={user?.image || ""} />
           <AvatarFallback className="bg-accent">
-            <FaUser className="w-4 h-4  " color="white" />
+            <FaUser className="w-4 h-4" color="white" />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
