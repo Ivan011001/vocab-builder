@@ -1,33 +1,11 @@
 import Dashboard from "./_components/dashboard";
 import WordsTable from "./_components/words-table";
 
-const words = [
-  {
-    id: "1",
-    word: "A little bit",
-    translation: "Трохи, трішки",
-    category: "Phrasal verb",
-    progress: "50",
-  },
+import { currentUser } from "@/lib/auth";
 
-  {
-    id: "2",
-    word: "Break in",
-    translation: "Вмішуватися, встрявати",
-    category: "Phrasal verb",
-    progress: "70",
-  },
+import { getUserDictionary } from "@/lib/dictionary";
 
-  {
-    id: "3",
-    word: "Care",
-    translation: "Турбота, догляд",
-    category: "Verb",
-    progress: "30",
-  },
-];
-
-const DictionaryPage = ({
+const DictionaryPage = async ({
   searchParams,
 }: {
   searchParams?: {
@@ -35,8 +13,12 @@ const DictionaryPage = ({
     search?: string;
   };
 }) => {
+  const user = await currentUser();
+
   const categorie = searchParams?.categorie || "";
   const search = searchParams?.search || "";
+
+  const words = await getUserDictionary(user?.id);
 
   const isVerb = categorie === "verb";
 

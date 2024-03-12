@@ -2,13 +2,13 @@
 
 import { useTransition, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { addWordSchema } from "@/schemas";
 
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -42,6 +42,8 @@ const AddWordForm = () => {
 
   const [isPending, startTransition] = useTransition();
 
+  const user = useCurrentUser();
+
   useEffect(() => {
     const fetch = async () => {
       const data = await getCategories();
@@ -63,7 +65,7 @@ const AddWordForm = () => {
 
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
     startTransition(() => {
-      addWord(values).then((data) => {
+      addWord(values, user?.id).then((data) => {
         form.reset();
       });
     });
