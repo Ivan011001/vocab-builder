@@ -9,19 +9,6 @@ export const getRecommend = async (
   try {
     const skip = (page - 1) * 7;
 
-    const totalCount = await db.word.count({
-      where: {
-        category: {
-          equals: category,
-          mode: "insensitive",
-        },
-        word: {
-          contains: search,
-          mode: "insensitive",
-        },
-      },
-    });
-
     const whereClause: Prisma.RecommendWhereInput = {
       word: {
         contains: search,
@@ -36,12 +23,17 @@ export const getRecommend = async (
       };
     }
 
+    const totalCount = await db.recommend.count({
+      where: whereClause,
+    });
+
     const dictionary = await db.recommend.findMany({
       take: 7,
       skip,
       where: whereClause,
     });
 
+    const totalPages = Math.ceil(totalCount / 7);
     const hasPrevPage = page > 1;
     const hasNextPage = skip + dictionary.length < totalCount;
 
@@ -50,6 +42,7 @@ export const getRecommend = async (
       meta: {
         totalCount,
         currentPage: page,
+        totalPages,
         hasPrevPage,
         hasNextPage,
       },
