@@ -12,7 +12,15 @@ export const addWord = async (values: z.infer<typeof addWordSchema>) => {
     return { error: "Invalid fileds!" };
   }
 
-  await db.categorie.findMany();
+  const { en, ua, category } = validatedFileds.data;
+
+  await db.recommend.create({
+    data: {
+      word: en,
+      translation: ua,
+      category,
+    },
+  });
 
   return { success: "Word was added!" };
 };
