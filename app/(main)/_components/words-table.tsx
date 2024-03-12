@@ -6,15 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import { IDictionary, IRecommend } from "@/types";
+
+import { capitalizeWord } from "@/helpers";
+
 import { cn } from "@/lib/utils";
 
 interface IWordsTableProps {
-  words: {
-    word: string;
-    translation: string;
-    categorie: string;
-    progress?: string;
-  }[];
+  words: (IRecommend | IDictionary)[] | null; // Adjusted the type to union of IRecommend and IDictionary
   isDictionary?: boolean;
 }
 
@@ -54,9 +54,9 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody className="bg-neutral-50 rounded-[15px]">
-          {words.map(({ word, translation, categorie, progress }, index) => (
+          {words?.map((wordItem, index) => (
             <TableRow
-              key={word}
+              key={wordItem.id}
               className="[&_td]:border-r [&_td]:border-zinc-300"
               //md:[&_td]:last:border-b md:[&_td]:last:border-zinc-300
             >
@@ -66,11 +66,17 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                   index === words.length - 1 && "rounded-bl-[15px]"
                 )}
               >
-                {word}
+                {capitalizeWord(wordItem.word)}
               </TableCell>
-              <TableCell>{translation}</TableCell>
-              <TableCell>{categorie}</TableCell>
-              {isDictionary && <TableCell>{progress}</TableCell>}
+              <TableCell>{capitalizeWord(wordItem.translation)}</TableCell>
+              <TableCell>{capitalizeWord(wordItem.category)}</TableCell>
+
+              {isDictionary && "progress" in wordItem && (
+                <TableCell>
+                  {capitalizeWord((wordItem as IDictionary).progress)}
+                </TableCell>
+              )}
+
               <TableCell
                 className={cn(
                   "text-center  last:border-r-0",

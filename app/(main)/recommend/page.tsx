@@ -1,27 +1,10 @@
+import { getRecommend } from "@/data/recommend";
 import Dashboard from "../_components/dashboard";
 import WordsTable from "../_components/words-table";
 
-const words = [
-  {
-    word: "A little bit",
-    translation: "Трохи, трішки",
-    categorie: "Phrasal verb",
-  },
+const RecommendPage = async () => {
+  const words = await getRecommend();
 
-  {
-    word: "Break in",
-    translation: "Вмішуватися, встрявати",
-    categorie: "Phrasal verb",
-  },
-
-  {
-    word: "Care",
-    translation: "Турбота, догляд",
-    categorie: "Verb",
-  },
-];
-
-const RecommendPage = () => {
   return (
     <div className="flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard />

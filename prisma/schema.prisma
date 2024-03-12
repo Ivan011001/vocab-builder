@@ -84,3 +84,10 @@ model Categorie {
   id    String @id @default(cuid())
   name  String
 }
+
+model Recommend {
+  id    String @id @default(cuid())
+  word String
+  translation String
+  category String
+}
