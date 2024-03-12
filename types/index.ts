@@ -15,5 +15,5 @@ export interface IDictionary {
   word: string;
   translation: string;
   category: string;
-  progress: string;
+  progress: number;
 }

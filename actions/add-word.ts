@@ -4,8 +4,12 @@ import * as z from "zod";
 import { addWordSchema } from "@/schemas";
 
 import { db } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
-export const addWord = async (values: z.infer<typeof addWordSchema>) => {
+export const addWord = async (
+  values: z.infer<typeof addWordSchema>,
+  userId: string | null | undefined
+) => {
   const validatedFileds = addWordSchema.safeParse(values);
 
   if (!validatedFileds.success) {
@@ -14,6 +18,10 @@ export const addWord = async (values: z.infer<typeof addWordSchema>) => {
 
   const { en, ua, category } = validatedFileds.data;
 
+  if (!userId) {
+    return { error: "Unauthorized!" };
+  }
+
   await db.recommend.create({
     data: {
       word: en,
@@ -21,6 +29,18 @@ export const addWord = async (values: z.infer<typeof addWordSchema>) => {
       category,
     },
   });
+
+  await db.word.create({
+    data: {
+      word: en,
+      translation: ua,
+      category,
+      progress: 0,
+      userId,
+    },
+  });
+
+  revalidatePath("/");
 
   return { success: "Word was added!" };
 };

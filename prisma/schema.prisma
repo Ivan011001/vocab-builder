@@ -23,6 +23,7 @@ model User {
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  words                 Word[]
 }
 
 model Account {
@@ -81,13 +82,24 @@ model TwoFactorConfirmation {
 }
 
 model Categorie {
-  id    String @id @default(cuid())
-  name  String
+  id   String @id @default(cuid())
+  name String
 }
 
 model Recommend {
-  id    String @id @default(cuid())
-  word String
+  id          String @id @default(cuid())
+  word        String
   translation String
-  category String
+  category    String
+}
+
+model Word {
+  id          String @id @default(cuid())
+  word        String
+  translation String
+  category    String
+  progress    Int
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }
