@@ -4,6 +4,9 @@ import * as z from "zod";
 import { addWordSchema } from "@/schemas";
 
 import { db } from "@/lib/db";
+
+import { addRecommend } from "./add-recommend";
+
 import { revalidatePath } from "next/cache";
 
 export const addWord = async (
@@ -22,13 +25,7 @@ export const addWord = async (
     return { error: "Unauthorized!" };
   }
 
-  await db.recommend.create({
-    data: {
-      word: en,
-      translation: ua,
-      category,
-    },
-  });
+  await addRecommend(en, ua, category);
 
   await db.word.create({
     data: {
