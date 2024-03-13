@@ -5,18 +5,22 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 
 import { addWord } from "@/actions/add-word";
 
+import { VerbType } from "@prisma/client";
+
 import { toast } from "sonner";
 
 interface IAddDictionaryProps {
   word: string;
   translation: string;
   category: string;
+  verbType?: VerbType;
 }
 
 const AddDictionary = ({
   word,
   translation,
   category,
+  verbType,
 }: IAddDictionaryProps) => {
   const [isPending, startTransition] = useTransition();
 
@@ -24,7 +28,7 @@ const AddDictionary = ({
 
   const onHadnelAdd = () => {
     startTransition(() => {
-      addWord({ en: word, ua: translation, category, verbType: "" }, user?.id)
+      addWord({ en: word, ua: translation, category, verbType }, user?.id)
         .then((data) => {
           if (data.error) {
             toast.warning(data.error);
