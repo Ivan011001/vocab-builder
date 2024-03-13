@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { UserRole } from "@prisma/client";
+import { UserRole, VerbType } from "@prisma/client";
 
 export const loginSchema = z.object({
   email: z.string().email({
@@ -86,7 +86,7 @@ export const settingsSchema = z
 export const addWordSchema = z
   .object({
     category: z.string(),
-    verbType: z.string(),
+    verbType: z.optional(z.enum([VerbType.regular, VerbType.irregular])),
     en: z
       .string()
       .refine(

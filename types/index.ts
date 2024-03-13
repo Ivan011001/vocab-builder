@@ -1,3 +1,5 @@
+import { VerbType } from "@prisma/client";
+
 export interface ICategory {
   id: string;
   name: string;
@@ -15,6 +17,7 @@ export interface IDictionary {
   word: string;
   translation: string;
   category: string;
+  verbType: VerbType;
   progress: number;
 }
 

@@ -1,14 +1,23 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, VerbType } from "@prisma/client";
+
 import { db } from "./db";
+import { findUserById } from "@/data/user";
 
 export const getUserDictionary = async (
   userId: string | null | undefined,
   search: string,
   category: string,
-  page: number
+  page: number,
+  verbType?: VerbType
 ) => {
   try {
     if (!userId) {
+      return null;
+    }
+
+    const user = await findUserById(userId);
+
+    if (!user) {
       return null;
     }
 
@@ -26,6 +35,12 @@ export const getUserDictionary = async (
       whereClause.category = {
         equals: category,
         mode: "insensitive",
+      };
+    }
+
+    if (verbType) {
+      whereClause.verbType = {
+        equals: verbType,
       };
     }
 

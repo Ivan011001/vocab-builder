@@ -13,8 +13,8 @@ enum UserRole {
 }
 
 enum VerbType {
-  REGULAR
-  IRREGULAR
+  regular 
+  irregular
 }
 
 model User {

@@ -57,7 +57,7 @@ const AddWordForm = () => {
     resolver: zodResolver(addWordSchema),
     defaultValues: {
       category: "",
-      verbType: "",
+      verbType: undefined,
       ua: "",
       en: "",
     },

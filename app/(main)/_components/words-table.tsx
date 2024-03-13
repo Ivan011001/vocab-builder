@@ -85,6 +85,7 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                     word={wordItem.word}
                     translation={wordItem.translation}
                     category={wordItem.category}
+                    verbType={(wordItem as IDictionary).verbType}
                   />
                 )}
               </TableCell>
