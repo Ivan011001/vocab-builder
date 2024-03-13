@@ -1,5 +1,8 @@
 "use client";
 
+import { useTransition } from "react";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,8 +10,36 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const ActionsButton = () => {
-  const onHandleDelete = () => {};
+import { deleteWord } from "@/actions/delete-word";
+
+import { toast } from "sonner";
+
+interface IActionsButtonProps {
+  id: string;
+}
+
+const ActionsButton = ({ id }: IActionsButtonProps) => {
+  const [isPending, startTransition] = useTransition();
+
+  const user = useCurrentUser();
+
+  const onHandleDelete = () => {
+    startTransition(() => {
+      deleteWord(id, user?.id!)
+        .then((data) => {
+          if (data.error) {
+            toast.warning(data.error);
+          }
+
+          if (data.success) {
+            toast.success(data.success);
+          }
+        })
+        .catch(() => {
+          toast.warning("Something went wrong");
+        });
+    });
+  };
 
   const onHandleEdit = () => {};
 
@@ -22,7 +53,11 @@ const ActionsButton = () => {
         align="center"
       >
         <DropdownMenuItem>
-          <button onClick={onHandleEdit} className="flex gap-x-2 items-center">
+          <button
+            onClick={onHandleEdit}
+            className="flex gap-x-2 items-center"
+            disabled={isPending}
+          >
             <svg className="h-4 w-4">
               <use xlinkHref="/sprite.svg#icon-edit"></use>
             </svg>
@@ -33,6 +68,7 @@ const ActionsButton = () => {
           <button
             onClick={onHandleDelete}
             className="flex gap-x-2 items-center"
+            disabled={isPending}
           >
             <svg className="h-4 w-4">
               <use xlinkHref="/sprite.svg#icon-delete"></use>
