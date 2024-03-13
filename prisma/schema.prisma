@@ -12,6 +12,11 @@ enum UserRole {
   USER
 }
 
+enum VerbType {
+  REGULAR
+  IRREGULAR
+}
+
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -98,8 +103,11 @@ model Word {
   word        String
   translation String
   category    String
+  verbType    VerbType?
   progress    Int
 
   userId String
   user   User   @relation(fields: [userId], references: [id])
+
+  updatedAt DateTime @updatedAt
 }
