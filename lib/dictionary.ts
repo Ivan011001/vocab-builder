@@ -49,6 +49,9 @@ export const getUserDictionary = async (
     });
 
     const dictionary = await db.word.findMany({
+      orderBy: {
+        updatedAt: "desc",
+      },
       take: 7,
       skip,
       where: whereClause,

@@ -66,7 +66,12 @@ const Categories = () => {
   return (
     <Select onValueChange={onHandleChange}>
       <SelectTrigger className="md:w-40 rounded-[15px] px-6 py-3 border border-neutral-900 border-opacity-10 text-neutral-900 text-base font-medium leading-normal">
-        <SelectValue placeholder="Categories" />
+        <SelectValue
+          placeholder={
+            capitalizeWord(searchParams.get("category")?.toString()) ||
+            "Category"
+          }
+        />
       </SelectTrigger>
       <SelectContent className="md:w-40">
         <SelectGroup className="flex flex-col gap-2 px-6 py-3">

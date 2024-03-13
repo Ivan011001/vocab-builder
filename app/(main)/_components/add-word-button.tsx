@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import AddWordForm from "./add-word-form";
 
 import {
@@ -10,8 +14,10 @@ import {
 } from "@/components/ui/dialog";
 
 const AddWordButton = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button className="group flex items-start gap-x-2 text-neutral-900 text-base font-medium leading-normal">
           Add word
@@ -29,7 +35,7 @@ const AddWordButton = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <AddWordForm />
+        <AddWordForm setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
