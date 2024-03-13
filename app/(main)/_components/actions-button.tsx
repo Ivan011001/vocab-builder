@@ -13,6 +13,7 @@ import {
 import { deleteWord } from "@/actions/delete-word";
 
 import { toast } from "sonner";
+import EditWordButton from "./edit-word-button";
 
 interface IActionsButtonProps {
   id: string;
@@ -41,8 +42,6 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
     });
   };
 
-  const onHandleEdit = () => {};
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus-visible:outline-none">
@@ -52,18 +51,8 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
         className="px-6 py-3 flex flex-col gap-2"
         align="center"
       >
-        <DropdownMenuItem>
-          <button
-            onClick={onHandleEdit}
-            className="flex gap-x-2 items-center"
-            disabled={isPending}
-          >
-            <svg className="h-4 w-4">
-              <use xlinkHref="/sprite.svg#icon-edit"></use>
-            </svg>
-            Edit
-          </button>
-        </DropdownMenuItem>
+        <EditWordButton id={id} />
+
         <DropdownMenuItem>
           <button
             onClick={onHandleDelete}

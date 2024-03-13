@@ -17,7 +17,7 @@ export interface IDictionary {
   word: string;
   translation: string;
   category: string;
-  verbType: VerbType;
+  verbType: VerbType | null;
   progress: number;
 }
 
