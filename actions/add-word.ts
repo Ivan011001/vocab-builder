@@ -61,5 +61,5 @@ export const addWord = async (
 
   revalidatePath("/");
 
-  return { success: "Word was added!" };
+  return { success: `Word ${en} was added!` };
 };

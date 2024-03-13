@@ -16,6 +16,17 @@ export const deleteWord = async (id: string, userId: string) => {
     return { error: "Unauthorized!" };
   }
 
+  const wordExists = await db.word.findFirst({
+    where: {
+      userId,
+      id,
+    },
+  });
+
+  if (!wordExists) {
+    return { error: "Word does not exist!" };
+  }
+
   await db.word.delete({
     where: {
       id,
@@ -25,5 +36,5 @@ export const deleteWord = async (id: string, userId: string) => {
 
   revalidatePath("/");
 
-  return { success: "Word was deleted!" };
+  return { success: `Word ${wordExists.word} was deleted!` };
 };
