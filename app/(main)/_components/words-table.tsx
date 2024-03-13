@@ -79,7 +79,11 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                 )}
               >
                 {isDictionary ? (
-                  <ActionsButton id={wordItem.id} />
+                  <ActionsButton
+                    id={wordItem.id}
+                    word={wordItem.word}
+                    translation={wordItem.translation}
+                  />
                 ) : (
                   <AddDictionary
                     word={wordItem.word}

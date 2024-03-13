@@ -13,12 +13,15 @@ import {
 import { deleteWord } from "@/actions/delete-word";
 
 import { toast } from "sonner";
+import EditWordButton from "./edit-word-button";
 
 interface IActionsButtonProps {
   id: string;
+  word: string;
+  translation: string;
 }
 
-const ActionsButton = ({ id }: IActionsButtonProps) => {
+const ActionsButton = ({ id, word, translation }: IActionsButtonProps) => {
   const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
@@ -41,8 +44,6 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
     });
   };
 
-  const onHandleEdit = () => {};
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus-visible:outline-none">
@@ -53,17 +54,9 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
         align="center"
       >
         <DropdownMenuItem>
-          <button
-            onClick={onHandleEdit}
-            className="flex gap-x-2 items-center"
-            disabled={isPending}
-          >
-            <svg className="h-4 w-4">
-              <use xlinkHref="/sprite.svg#icon-edit"></use>
-            </svg>
-            Edit
-          </button>
+          <EditWordButton id={id} word={word} translation={translation} />
         </DropdownMenuItem>
+
         <DropdownMenuItem>
           <button
             onClick={onHandleDelete}
