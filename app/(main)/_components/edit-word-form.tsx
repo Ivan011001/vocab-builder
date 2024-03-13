@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, SetStateAction, Dispatch } from "react";
+import { useState, SetStateAction, Dispatch, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
@@ -24,31 +24,38 @@ import {
 import { DialogClose } from "@/components/ui/dialog";
 
 import { editWord } from "@/actions/edit-word";
+import { getUserWordById } from "@/data/word";
 
 import { toast } from "sonner";
+import { IDictionary } from "@/types";
+import { $Enums } from "@prisma/client";
 
 interface IEditWordFormProps {
   id: string;
-  word: string;
-  translation: string;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const EditWordForm = ({
-  id,
-  word,
-  translation,
-  setOpen,
-}: IEditWordFormProps) => {
+const EditWordForm = ({ id, setOpen }: IEditWordFormProps) => {
   const [isPending, setIsPending] = useState(false);
-
   const user = useCurrentUser();
+
+  const [word, setWord] = useState<null | IDictionary>(null);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await getUserWordById(id, user?.id!);
+
+      setWord(response);
+    };
+
+    fetch();
+  }, []);
 
   const form = useForm<z.infer<typeof editWordSchema>>({
     resolver: zodResolver(editWordSchema),
     defaultValues: {
-      ua: translation,
-      en: word,
+      ua: word?.translation || "",
+      en: word?.word || "",
     },
   });
 

@@ -17,11 +17,9 @@ import EditWordButton from "./edit-word-button";
 
 interface IActionsButtonProps {
   id: string;
-  word: string;
-  translation: string;
 }
 
-const ActionsButton = ({ id, word, translation }: IActionsButtonProps) => {
+const ActionsButton = ({ id }: IActionsButtonProps) => {
   const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
@@ -54,7 +52,7 @@ const ActionsButton = ({ id, word, translation }: IActionsButtonProps) => {
         align="center"
       >
         <DropdownMenuItem>
-          <EditWordButton id={id} word={word} translation={translation} />
+          <EditWordButton id={id} />
         </DropdownMenuItem>
 
         <DropdownMenuItem>

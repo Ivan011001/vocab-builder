@@ -79,17 +79,13 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                 )}
               >
                 {isDictionary ? (
-                  <ActionsButton
-                    id={wordItem.id}
-                    word={wordItem.word}
-                    translation={wordItem.translation}
-                  />
+                  <ActionsButton id={wordItem.id} />
                 ) : (
                   <AddDictionary
                     word={wordItem.word}
                     translation={wordItem.translation}
                     category={wordItem.category}
-                    verbType={(wordItem as IDictionary).verbType}
+                    verbType={(wordItem as IDictionary).verbType!}
                   />
                 )}
               </TableCell>

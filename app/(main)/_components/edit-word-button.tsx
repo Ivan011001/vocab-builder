@@ -8,11 +8,9 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface IEditWordButtonProps {
   id: string;
-  word: string;
-  translation: string;
 }
 
-const EditWordButton = ({ id, word, translation }: IEditWordButtonProps) => {
+const EditWordButton = ({ id }: IEditWordButtonProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -26,12 +24,7 @@ const EditWordButton = ({ id, word, translation }: IEditWordButtonProps) => {
         </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[343px] md:max-w-[628px]">
-        <EditWordForm
-          id={id}
-          word={word}
-          translation={translation}
-          setOpen={setOpen}
-        />
+        <EditWordForm id={id} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
