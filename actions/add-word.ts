@@ -20,7 +20,7 @@ export const addWord = async (
     return { error: "Invalid fileds!" };
   }
 
-  const { en, ua, category } = validatedFileds.data;
+  const { en, ua, category, verbType } = validatedFileds.data;
 
   if (!userId) {
     return { error: "Unauthorized!" };
@@ -52,6 +52,7 @@ export const addWord = async (
       translation: ua,
       category,
       progress: 0,
+      verbType,
       userId,
     },
   });

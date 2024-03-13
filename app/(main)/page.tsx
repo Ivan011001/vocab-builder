@@ -6,6 +6,8 @@ import { currentUser } from "@/lib/auth";
 
 import { getUserDictionary } from "@/lib/dictionary";
 
+import { VerbType } from "@prisma/client";
+
 const DictionaryPage = async ({
   searchParams,
 }: {
@@ -13,6 +15,7 @@ const DictionaryPage = async ({
     category?: string;
     search?: string;
     page?: string;
+    verbType?: VerbType;
   };
 }) => {
   const user = await currentUser();
@@ -20,8 +23,15 @@ const DictionaryPage = async ({
   const category = searchParams?.category || "";
   const search = searchParams?.search || "";
   const page = Number(searchParams?.page) || 1;
+  const verbType = searchParams?.verbType || undefined;
 
-  const response = await getUserDictionary(user?.id, search, category, page);
+  const response = await getUserDictionary(
+    user?.id,
+    search,
+    category,
+    page,
+    verbType
+  );
 
   const isVerb = category === "verb";
 
@@ -29,9 +39,10 @@ const DictionaryPage = async ({
     <div className="h-full flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard addWord isVerb={isVerb} />
       <div className="flex-grow-1 h-full">
-        <WordsTable isDictionary words={response?.data!} />
+        {response?.data && <WordsTable isDictionary words={response?.data} />}
       </div>
-      <WordsPagination meta={response?.meta!} />
+
+      {response?.meta && <WordsPagination meta={response?.meta!} />}
     </div>
   );
 };
