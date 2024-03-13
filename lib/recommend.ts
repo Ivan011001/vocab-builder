@@ -28,6 +28,9 @@ export const getRecommend = async (
     });
 
     const dictionary = await db.recommend.findMany({
+      orderBy: {
+        word: "asc",
+      },
       take: 7,
       skip,
       where: whereClause,

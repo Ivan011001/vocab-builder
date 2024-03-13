@@ -4,6 +4,10 @@ import * as z from "zod";
 import { addWordSchema } from "@/schemas";
 
 import { db } from "@/lib/db";
+
+import { findUserById } from "@/data/user";
+import { createRecommend } from "./create-recommend";
+
 import { revalidatePath } from "next/cache";
 
 export const addWord = async (
@@ -22,13 +26,25 @@ export const addWord = async (
     return { error: "Unauthorized!" };
   }
 
-  await db.recommend.create({
-    data: {
-      word: en,
-      translation: ua,
-      category,
+  const user = await findUserById(userId);
+
+  if (!user) {
+    return { error: "Unauthorized!" };
+  }
+
+  const wordExists = await db.word.findFirst({
+    where: {
+      userId,
+      word: {
+        equals: en,
+        mode: "insensitive",
+      },
     },
   });
+
+  if (wordExists) {
+    return { error: "Word is already in dictionary!" };
+  }
 
   await db.word.create({
     data: {
@@ -39,6 +55,8 @@ export const addWord = async (
       userId,
     },
   });
+
+  await createRecommend(en, ua, category);
 
   revalidatePath("/");
 

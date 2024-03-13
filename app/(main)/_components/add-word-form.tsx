@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
@@ -37,10 +37,10 @@ import { ICategory } from "@/types";
 
 import { capitalizeWord } from "@/helpers";
 
+import { toast } from "sonner";
+
 const AddWordForm = () => {
   const [categories, setCategories] = useState<ICategory[] | null>([]);
-
-  const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
 
@@ -64,11 +64,21 @@ const AddWordForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
-    startTransition(() => {
-      addWord(values, user?.id).then((data) => {
-        form.reset();
+    addWord(values, user?.id)
+      .then((data) => {
+        if (data.error) {
+          toast.warning(data.error);
+          form.reset();
+        }
+
+        if (data.success) {
+          toast.success(data.success);
+          form.reset();
+        }
+      })
+      .catch(() => {
+        toast.error("Something went wrong!");
       });
-    });
   };
 
   return (
@@ -80,7 +90,7 @@ const AddWordForm = () => {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange} disabled={isPending}>
+                <Select onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="px-6 py-3 md:w-[208px] text-neutral-50 rounded-[15px]">
                       <SelectValue placeholder="Categories" />
@@ -167,7 +177,6 @@ const AddWordForm = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      disabled={isPending}
                       {...field}
                       placeholder="Працювати"
                       className="px-6 py-3 border border-gray-300 border-opacity-100 text-neutral-50 placeholder:text-neutral-50 hover:border-neutral-50 hover:border-opacity-100 focus:border-neutral-50 focus:border-opacity-100"
@@ -194,7 +203,6 @@ const AddWordForm = () => {
 
                   <FormControl>
                     <Input
-                      disabled={isPending}
                       {...field}
                       placeholder="Work"
                       className="px-6 py-3 border border-gray-300 border-opacity-100 text-neutral-50 placeholder:text-neutral-50 hover:border-neutral-50 hover:border-opacity-100 focus:border-neutral-50 focus:border-opacity-100"
@@ -208,13 +216,15 @@ const AddWordForm = () => {
         </div>
 
         <div className="flex gap-x-2">
-          <Button
-            type="submit"
-            variant="outline"
-            className="shadow-none hover:text-neutral-50 hover:bg-accent transition-all duration-300"
-          >
-            Add
-          </Button>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              variant="outline"
+              className="shadow-none hover:text-neutral-50 hover:bg-accent transition-all duration-300"
+            >
+              Add
+            </Button>
+          </DialogClose>
 
           <DialogClose asChild>
             <Button
