@@ -25,6 +25,20 @@ export const addWord = async (
     return { error: "Unauthorized!" };
   }
 
+  const wordExists = await db.word.findFirst({
+    where: {
+      userId,
+      word: {
+        equals: en,
+        mode: "insensitive",
+      },
+    },
+  });
+
+  if (wordExists) {
+    return { error: "Word already in dictionary!" };
+  }
+
   await createRecommend(en, ua, category);
 
   await db.word.create({

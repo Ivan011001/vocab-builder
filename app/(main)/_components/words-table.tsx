@@ -49,9 +49,7 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
 
             {isDictionary && <TableHead>Progress</TableHead>}
 
-            <TableHead className="rounded-tr-[15px] border-none">
-              {""}
-            </TableHead>
+            <TableHead className="rounded-tr-[15px] border-none"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="bg-neutral-50 rounded-[15px]">
@@ -59,11 +57,9 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
             <TableRow
               key={wordItem.id}
               className="[&_td]:border-r [&_td]:border-zinc-300"
-              //md:[&_td]:last:border-b md:[&_td]:last:border-zinc-300
             >
               <TableCell
                 className={cn(
-                  "",
                   index === words.length - 1 && "rounded-bl-[15px]"
                 )}
               >
@@ -78,11 +74,19 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
 
               <TableCell
                 className={cn(
-                  "text-center  last:border-r-0",
+                  "text-center last:border-r-0",
                   index === words.length - 1 && "rounded-br-[15px]"
                 )}
               >
-                {isDictionary ? <ActionsButton /> : <AddDictionary />}
+                {isDictionary ? (
+                  <ActionsButton />
+                ) : (
+                  <AddDictionary
+                    word={wordItem.word}
+                    translation={wordItem.translation}
+                    category={wordItem.category}
+                  />
+                )}
               </TableCell>
             </TableRow>
           ))}
