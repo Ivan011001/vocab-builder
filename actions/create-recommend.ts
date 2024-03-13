@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 
-export const addRecommend = async (
+export const createRecommend = async (
   word: string,
   translation: string,
   category: string
