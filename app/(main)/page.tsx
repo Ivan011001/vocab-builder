@@ -1,4 +1,5 @@
 import Dashboard from "./_components/dashboard";
+import WordsEmpty from "./_components/words-empty";
 import WordsPagination from "./_components/words-pagination";
 import WordsTable from "./_components/words-table";
 
@@ -39,10 +40,16 @@ const DictionaryPage = async ({
     <div className="h-full flex flex-col gap-y-8 md:gap-y-7">
       <Dashboard addWord isVerb={isVerb} />
       <div className="flex-grow-1 h-full">
-        {response?.data && <WordsTable isDictionary words={response?.data} />}
+        {response?.data && response.data.length !== 0 ? (
+          <WordsTable isDictionary words={response?.data} />
+        ) : (
+          <WordsEmpty />
+        )}
       </div>
 
-      {response?.meta && <WordsPagination meta={response?.meta!} />}
+      {response?.meta && response.data.length !== 0 && (
+        <WordsPagination meta={response?.meta!} />
+      )}
     </div>
   );
 };
