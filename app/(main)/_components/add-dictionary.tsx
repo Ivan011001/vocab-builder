@@ -5,6 +5,8 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 
 import { addWord } from "@/actions/add-word";
 
+import { toast } from "sonner";
+
 interface IAddDictionaryProps {
   word: string;
   translation: string;
@@ -22,7 +24,19 @@ const AddDictionary = ({
 
   const onHadnelAdd = () => {
     startTransition(() => {
-      addWord({ en: word, ua: translation, category, verbType: "" }, user?.id);
+      addWord({ en: word, ua: translation, category, verbType: "" }, user?.id)
+        .then((data) => {
+          if (data.error) {
+            toast.warning(data.error);
+          }
+
+          if (data.success) {
+            toast.success(data.success);
+          }
+        })
+        .catch(() => {
+          toast.error("Something went wrong!");
+        });
     });
   };
 

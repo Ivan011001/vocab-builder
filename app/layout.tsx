@@ -53,7 +53,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body className={macPawFixelDisplay.className}>
-          <Toaster />
+          <Toaster richColors />
           {children}
         </body>
       </html>
