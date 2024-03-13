@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  useTransition,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import { useForm } from "react-hook-form";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
@@ -39,7 +45,13 @@ import { capitalizeWord } from "@/helpers";
 
 import { toast } from "sonner";
 
-const AddWordForm = () => {
+interface IAddWordFormProps {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const AddWordForm = ({ setOpen }: IAddWordFormProps) => {
+  const [isPending, setIsPending] = useState(false);
+
   const [categories, setCategories] = useState<ICategory[] | null>([]);
 
   const user = useCurrentUser();
@@ -64,20 +76,28 @@ const AddWordForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof addWordSchema>) => {
+    setIsPending(true);
+
     addWord(values, user?.id)
       .then((data) => {
         if (data.error) {
           toast.warning(data.error);
+
           form.reset();
         }
 
         if (data.success) {
           toast.success(data.success);
+
           form.reset();
+          setOpen(false);
         }
       })
       .catch(() => {
         toast.error("Something went wrong!");
+      })
+      .finally(() => {
+        setIsPending(false);
       });
   };
 
@@ -90,7 +110,7 @@ const AddWordForm = () => {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <Select onValueChange={field.onChange}>
+                <Select onValueChange={field.onChange} disabled={isPending}>
                   <FormControl>
                     <SelectTrigger className="px-6 py-3 md:w-[208px] text-neutral-50 rounded-[15px]">
                       <SelectValue placeholder="Categories" />
@@ -126,6 +146,7 @@ const AddWordForm = () => {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                       className="flex gap-x-4"
+                      disabled={isPending}
                     >
                       <FormItem className="flex items-center gap-x-2 space-y-0">
                         <FormControl>
@@ -178,6 +199,7 @@ const AddWordForm = () => {
                   <FormControl>
                     <Input
                       {...field}
+                      disabled={isPending}
                       placeholder="Працювати"
                       className="px-6 py-3 border border-gray-300 border-opacity-100 text-neutral-50 placeholder:text-neutral-50 hover:border-neutral-50 hover:border-opacity-100 focus:border-neutral-50 focus:border-opacity-100"
                     />
@@ -204,6 +226,7 @@ const AddWordForm = () => {
                   <FormControl>
                     <Input
                       {...field}
+                      disabled={isPending}
                       placeholder="Work"
                       className="px-6 py-3 border border-gray-300 border-opacity-100 text-neutral-50 placeholder:text-neutral-50 hover:border-neutral-50 hover:border-opacity-100 focus:border-neutral-50 focus:border-opacity-100"
                     />
@@ -216,15 +239,14 @@ const AddWordForm = () => {
         </div>
 
         <div className="flex gap-x-2">
-          <DialogClose asChild>
-            <Button
-              type="submit"
-              variant="outline"
-              className="shadow-none hover:text-neutral-50 hover:bg-accent transition-all duration-300"
-            >
-              Add
-            </Button>
-          </DialogClose>
+          <Button
+            disabled={isPending}
+            type="submit"
+            variant="outline"
+            className="shadow-none hover:text-neutral-50 hover:bg-accent transition-all duration-300"
+          >
+            Add
+          </Button>
 
           <DialogClose asChild>
             <Button
