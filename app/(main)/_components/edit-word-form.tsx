@@ -26,9 +26,9 @@ import { DialogClose } from "@/components/ui/dialog";
 import { editWord } from "@/actions/edit-word";
 import { getUserWordById } from "@/data/word";
 
-import { toast } from "sonner";
 import { IDictionary } from "@/types";
-import { $Enums } from "@prisma/client";
+
+import { toast } from "sonner";
 
 interface IEditWordFormProps {
   id: string;
@@ -38,26 +38,26 @@ interface IEditWordFormProps {
 const EditWordForm = ({ id, setOpen }: IEditWordFormProps) => {
   const [isPending, setIsPending] = useState(false);
   const user = useCurrentUser();
-
   const [word, setWord] = useState<null | IDictionary>(null);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const response = await getUserWordById(id, user?.id!);
-
-      setWord(response);
-    };
-
-    fetch();
-  }, []);
-
   const form = useForm<z.infer<typeof editWordSchema>>({
     resolver: zodResolver(editWordSchema),
     defaultValues: {
-      ua: word?.translation || "",
-      en: word?.word || "",
+      ua: "",
+      en: "",
     },
   });
+
+  useEffect(() => {
+    const fetchWord = async () => {
+      const response = await getUserWordById(id, user?.id!);
+      setWord(response);
+      form.reset({
+        ua: response?.translation ?? "",
+        en: response?.word ?? "",
+      });
+    };
+    fetchWord();
+  }, [id, user]);
 
   const onSubmit = (values: z.infer<typeof editWordSchema>) => {
     setIsPending(true);

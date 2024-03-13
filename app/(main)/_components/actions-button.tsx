@@ -51,9 +51,7 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
         className="px-6 py-3 flex flex-col gap-2"
         align="center"
       >
-        <DropdownMenuItem>
-          <EditWordButton id={id} />
-        </DropdownMenuItem>
+        <EditWordButton id={id} />
 
         <DropdownMenuItem>
           <button
