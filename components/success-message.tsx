@@ -8,7 +8,7 @@ const SuccessMessage = ({ text }: ISuccessMessageProps) => {
   if (!text) return;
 
   return (
-    <div className="rounded-md p-2 w-full flex items-center gap-2 bg-emerald-500/15 text-sm text-emerald-500">
+    <div className="rounded-[8px] p-3 w-full flex items-center gap-2 bg-emerald-500/15 text-sm text-emerald-500">
       <CheckCircledIcon className="w-4 h-4" />
       <p>{text}</p>
     </div>
