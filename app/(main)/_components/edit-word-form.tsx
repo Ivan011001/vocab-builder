@@ -11,7 +11,6 @@ import { editWordSchema } from "@/schemas";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import {
   Form,
   FormField,
@@ -20,13 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { DialogClose } from "@/components/ui/dialog";
 
 import { editWord } from "@/actions/main/edit-word";
 import { getUserWordById } from "@/data/word";
-
-import { IDictionary } from "@/types";
 
 import { toast } from "sonner";
 
@@ -38,7 +34,7 @@ interface IEditWordFormProps {
 const EditWordForm = ({ id, setOpen }: IEditWordFormProps) => {
   const [isPending, setIsPending] = useState(false);
   const user = useCurrentUser();
-  const [word, setWord] = useState<null | IDictionary>(null);
+
   const form = useForm<z.infer<typeof editWordSchema>>({
     resolver: zodResolver(editWordSchema),
     defaultValues: {
@@ -50,12 +46,13 @@ const EditWordForm = ({ id, setOpen }: IEditWordFormProps) => {
   useEffect(() => {
     const fetchWord = async () => {
       const response = await getUserWordById(id, user?.id!);
-      setWord(response);
+
       form.reset({
         ua: response?.translation ?? "",
         en: response?.word ?? "",
       });
     };
+
     fetchWord();
   }, [id, user]);
 
