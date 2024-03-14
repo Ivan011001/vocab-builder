@@ -65,7 +65,7 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
             className="flex gap-x-2 items-center"
             disabled={isPending}
           >
-            <svg className="h-4 w-4">
+            <svg className="h-4 w-4 fill-none stroke-gray-400">
               <use xlinkHref="/sprite.svg#icon-delete"></use>
             </svg>
             Delete
