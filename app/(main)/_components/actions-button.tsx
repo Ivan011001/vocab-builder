@@ -10,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { deleteWord } from "@/actions/main/delete-word";
+import { softDeleteWord } from "@/actions/main/soft-delete-word";
+import { restoreWord } from "@/actions/main/restore-word";
 
 import { toast } from "sonner";
 import EditWordButton from "./edit-word-button";
@@ -26,14 +27,19 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
 
   const onHandleDelete = () => {
     startTransition(() => {
-      deleteWord(id, user?.id!)
+      softDeleteWord(id, user?.id!)
         .then((data) => {
           if (data.error) {
             toast.warning(data.error);
           }
 
           if (data.success) {
-            toast.success(data.success);
+            toast.success(data.success, {
+              action: {
+                label: "Undo",
+                onClick: () => restoreWord(id, user?.id!),
+              },
+            });
           }
         })
         .catch(() => {
