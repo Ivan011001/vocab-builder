@@ -1,7 +1,5 @@
 import * as z from "zod";
 
-import { UserRole } from "@prisma/client";
-
 export const settingsSchema = z
   .object({
     name: z.optional(
@@ -15,8 +13,6 @@ export const settingsSchema = z
         message: "Invalid email format",
       })
     ),
-
-    role: z.enum([UserRole.ADMIN, UserRole.USER]),
 
     password: z.optional(z.string().min(6)),
 
