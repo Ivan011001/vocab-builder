@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/hooks";
 
 import * as z from "zod";
 import { settingsSchema } from "@/schemas";
