@@ -14,15 +14,17 @@ import {
 import { FaUser } from "react-icons/fa";
 import { ExitIcon } from "@radix-ui/react-icons";
 
-import { capitalizeWord } from "@/helpers";
+import { capitalizeWord, shortenWord } from "@/helpers";
 
 const UserButton = () => {
   const user = useCurrentUser();
 
+  const name = shortenWord(capitalizeWord(user?.name), 10);
+
   return (
     <DropdownMenu>
       <p className="text-primary text-base md:text-xl md:mr-4 font-medium mr-2">
-        {capitalizeWord(user?.name)}
+        {name}
       </p>
       <DropdownMenuTrigger className="focus-visible:outline-none">
         <Avatar className="w-9 h-9 md:w-12 md:h-12 mr-2 md:mr-0">

@@ -28,7 +28,7 @@ const RecommendPage = async ({
 
   return (
     <div className="h-full flex flex-col gap-y-8 md:gap-y-7">
-      <Dashboard addWord isVerb={isVerb} />
+      <Dashboard isVerb={isVerb} />
       <div className="flex-grow-1 h-full">
         {response?.data && response.data.length !== 0 ? (
           <WordsTable words={response?.data} />
