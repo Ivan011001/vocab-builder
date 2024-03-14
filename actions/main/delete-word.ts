@@ -34,7 +34,7 @@ export const deleteWord = async (id: string, userId: string) => {
     },
   });
 
-  revalidatePath("/");
+  revalidatePath("/trash");
 
   return { success: `Word ${wordExists.word} was deleted!` };
 };

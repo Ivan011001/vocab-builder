@@ -39,4 +39,7 @@ export const restoreWord = async (id: string, userId: string) => {
   });
 
   revalidatePath("/");
+  revalidatePath("/trash");
+
+  return { success: "Word was restored!" };
 };
