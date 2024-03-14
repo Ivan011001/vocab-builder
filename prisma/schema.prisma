@@ -96,6 +96,7 @@ model Recommend {
   word        String
   translation String
   category    String
+  verbType    VerbType?
 }
 
 model Word {

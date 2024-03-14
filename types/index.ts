@@ -10,6 +10,7 @@ export interface IRecommend {
   word: string;
   translation: string;
   category: string;
+  verbType: VerbType | null;
 }
 
 export interface IDictionary {

@@ -1,10 +1,11 @@
 import { db } from "@/lib/db";
-import { Prisma } from "@prisma/client";
+import { Prisma, VerbType } from "@prisma/client";
 
 export const getRecommend = async (
   search: string,
   category: string,
-  page: number
+  page: number,
+  verbType?: VerbType
 ) => {
   try {
     const skip = (page - 1) * 7;
@@ -20,6 +21,12 @@ export const getRecommend = async (
       whereClause.category = {
         equals: category,
         mode: "insensitive",
+      };
+    }
+
+    if (verbType) {
+      whereClause.verbType = {
+        equals: verbType,
       };
     }
 
