@@ -3,7 +3,7 @@
 import { useTransition } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
-import { addWord } from "@/actions/add-word";
+import { addWord } from "@/actions/main/add-word";
 
 import { VerbType } from "@prisma/client";
 

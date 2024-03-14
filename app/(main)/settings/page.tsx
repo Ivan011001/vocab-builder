@@ -33,7 +33,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { settings } from "@/actions/settings";
+import { settings } from "@/actions/auth/settings";
 
 import { UserRole } from "@prisma/client";
 

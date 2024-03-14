@@ -36,7 +36,7 @@ import {
 } from "@/components/ui/select";
 import { DialogClose } from "@/components/ui/dialog";
 
-import { addWord } from "@/actions/add-word";
+import { addWord } from "@/actions/main/add-word";
 import { getCategories } from "@/data/categories";
 
 import { ICategory } from "@/types";

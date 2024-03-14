@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { deleteWord } from "@/actions/delete-word";
+import { deleteWord } from "@/actions/main/delete-word";
 
 import { toast } from "sonner";
 import EditWordButton from "./edit-word-button";

@@ -23,7 +23,7 @@ import {
 
 import { DialogClose } from "@/components/ui/dialog";
 
-import { editWord } from "@/actions/edit-word";
+import { editWord } from "@/actions/main/edit-word";
 import { getUserWordById } from "@/data/word";
 
 import { IDictionary } from "@/types";
