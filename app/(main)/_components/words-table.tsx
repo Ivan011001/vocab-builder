@@ -1,4 +1,6 @@
 import ActionsButton from "./actions-button";
+import AddDictionary from "./add-dictionary";
+import ProgressCircle from "./progress-circle";
 
 import {
   Table,
@@ -14,7 +16,6 @@ import { IDictionary, IRecommend } from "@/types";
 import { capitalizeWord } from "@/helpers";
 
 import { cn } from "@/lib/utils";
-import AddDictionary from "./add-dictionary";
 
 interface IWordsTableProps {
   words: (IRecommend | IDictionary)[] | null;
@@ -69,7 +70,11 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
               <TableCell>{capitalizeWord(wordItem.category)}</TableCell>
 
               {isDictionary && "progress" in wordItem && (
-                <TableCell>{(wordItem as IDictionary).progress}</TableCell>
+                <TableCell>
+                  <ProgressCircle
+                    progress={(wordItem as IDictionary).progress || 20}
+                  />
+                </TableCell>
               )}
 
               <TableCell
