@@ -28,7 +28,15 @@ const AddDictionary = ({
 
   const onHadnelAdd = () => {
     startTransition(() => {
-      addWord({ en: word, ua: translation, category, verbType }, user?.id)
+      addWord(
+        {
+          en: word,
+          ua: translation,
+          category,
+          verbType: verbType || undefined,
+        },
+        user?.id
+      )
         .then((data) => {
           if (data.error) {
             toast.warning(data.error);
