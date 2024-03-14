@@ -1,5 +1,5 @@
-import AuthBullets from "../_components/auth-bullets";
-import AuthImage from "../_components/auth-image";
+import AuthBullets from "@/components/auth/auth-bullets";
+import AuthImage from "@/components/auth/auth-image";
 import RegisterForm from "@/components/auth/register-form";
 
 const RegisterPage = () => {
