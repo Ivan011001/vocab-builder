@@ -16,13 +16,15 @@ import { IDictionary, IRecommend } from "@/types";
 import { capitalizeWord } from "@/helpers";
 
 import { cn } from "@/lib/utils";
+import TrashActions from "../trash/_components/trash-actions";
 
 interface IWordsTableProps {
   words: (IRecommend | IDictionary)[] | null;
   isDictionary?: boolean;
+  isTrash?: boolean;
 }
 
-const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
+const WordsTable = ({ words, isDictionary, isTrash }: IWordsTableProps) => {
   return (
     <div className="md:bg-white md:p-[18px] md:rounded-[15px]">
       <Table>
@@ -83,9 +85,11 @@ const WordsTable = ({ words, isDictionary }: IWordsTableProps) => {
                   index === words.length - 1 && "rounded-br-[15px]"
                 )}
               >
-                {isDictionary ? (
-                  <ActionsButton id={wordItem.id} />
-                ) : (
+                {isTrash && <TrashActions id={wordItem.id} />}
+
+                {isDictionary && <ActionsButton id={wordItem.id} />}
+
+                {!isDictionary && !isTrash && (
                   <AddDictionary
                     word={wordItem.word}
                     translation={wordItem.translation}

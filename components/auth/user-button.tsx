@@ -2,6 +2,8 @@
 
 import { useCurrentUser } from "@/hooks";
 
+import Link from "next/link";
+
 import LogoutButton from "./logout-button";
 import { AvatarFallback, Avatar, AvatarImage } from "../ui/avatar";
 import {
@@ -35,7 +37,19 @@ const UserButton = () => {
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-40" align="end">
+      <DropdownMenuContent
+        className="w-40 py-3 px-6 flex flex-col gap-y-3"
+        align="end"
+      >
+        <Link href="/trash">
+          <DropdownMenuItem>
+            <svg className="h-4 w-4 mr-2 fill-none stroke-red-500">
+              <use xlinkHref="/sprite.svg#icon-delete"></use>
+            </svg>
+            Trash
+          </DropdownMenuItem>
+        </Link>
+
         <LogoutButton>
           <DropdownMenuItem>
             <ExitIcon className="h-4 w-4 mr-2" />

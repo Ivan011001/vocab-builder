@@ -10,36 +10,48 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { softDeleteWord } from "@/actions/main/soft-delete-word";
 import { restoreWord } from "@/actions/main/restore-word";
+import { deleteWord } from "@/actions/main/delete-word";
 
 import { toast } from "sonner";
-import EditWordButton from "./edit-word-button";
 
-interface IActionsButtonProps {
+interface ITrashActionsProps {
   id: string;
 }
 
-const ActionsButton = ({ id }: IActionsButtonProps) => {
+const TrashActions = ({ id }: ITrashActionsProps) => {
   const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
 
-  const onHandleDelete = () => {
+  const onHandleRestore = () => {
     startTransition(() => {
-      softDeleteWord(id, user?.id!)
+      restoreWord(id, user?.id!)
         .then((data) => {
           if (data.error) {
             toast.warning(data.error);
           }
 
           if (data.success) {
-            toast.success(data.success, {
-              action: {
-                label: "Undo",
-                onClick: () => restoreWord(id, user?.id!),
-              },
-            });
+            toast.success(data.success);
+          }
+        })
+        .catch(() => {
+          toast.warning("Something went wrong");
+        });
+    });
+  };
+
+  const onHandleDelete = () => {
+    startTransition(() => {
+      deleteWord(id, user?.id!)
+        .then((data) => {
+          if (data.error) {
+            toast.warning(data.error);
+          }
+
+          if (data.success) {
+            toast.success(data.success);
           }
         })
         .catch(() => {
@@ -57,7 +69,18 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
         className="px-6 py-3 flex flex-col gap-2"
         align="center"
       >
-        <EditWordButton id={id} />
+        <DropdownMenuItem>
+          <button
+            onClick={onHandleRestore}
+            className="flex gap-x-2 items-center"
+            disabled={isPending}
+          >
+            <svg className="h-4 w-4 fill-none stroke-gray-400">
+              <use xlinkHref="/sprite.svg#icon-arrow-right"></use>
+            </svg>
+            Restore
+          </button>
+        </DropdownMenuItem>
 
         <DropdownMenuItem>
           <button
@@ -76,4 +99,4 @@ const ActionsButton = ({ id }: IActionsButtonProps) => {
   );
 };
 
-export default ActionsButton;
+export default TrashActions;
