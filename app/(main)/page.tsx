@@ -1,7 +1,7 @@
 import Dashboard from "./_components/dashboard";
-import WordsEmpty from "./_components/words-empty";
 import WordsPagination from "./_components/words-pagination";
 import WordsTable from "./_components/words-table";
+import WordsEmpty from "@/components/main/words-empty";
 
 import { currentUser } from "@/lib/auth";
 

@@ -1,11 +1,11 @@
 import Dashboard from "../_components/dashboard";
 import WordsPagination from "../_components/words-pagination";
 import WordsTable from "../_components/words-table";
+import WordsEmpty from "@/components/main/words-empty";
 
 import { VerbType } from "@prisma/client";
 
 import { getRecommend } from "@/lib/recommend";
-import WordsEmpty from "../_components/words-empty";
 
 const RecommendPage = async ({
   searchParams,

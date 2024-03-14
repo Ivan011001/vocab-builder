@@ -1,7 +1,7 @@
 import AddWordButton from "./add-word-button";
 import Filters from "./filters";
-import Statistics from "./statistics";
-import TrainingLink from "./training-link";
+import Statistics from "@/components/main/statistics";
+import TrainingLink from "@/components/main/training-link";
 
 import { cn } from "@/lib/utils";
 

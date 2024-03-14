@@ -1,5 +1,4 @@
 import Logo from "@/components/ui/logo";
-import React from "react";
 import Navbar from "./navbar";
 
 const Header = () => {

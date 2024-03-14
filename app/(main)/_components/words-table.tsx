@@ -1,5 +1,5 @@
 import ActionsButton from "./actions-button";
-import AddDictionary from "./add-dictionary";
+import AddDictionary from "../recommend/_components/add-dictionary";
 import ProgressCircle from "./progress-circle";
 
 import {
