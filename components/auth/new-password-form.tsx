@@ -22,7 +22,7 @@ import {
 } from "../ui/form";
 
 import { newPasswordSchema } from "@/schemas";
-import { newPassword } from "@/actions/new-password";
+import { newPassword } from "@/actions/auth/new-password";
 
 const NewPasswordForm = () => {
   const searchParams = useSearchParams();

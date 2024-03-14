@@ -1,6 +1,6 @@
-import Categories from "./categories";
-import Search from "./search";
-import VerbType from "./verb-type";
+import Categories from "@/components/main/categories";
+import Search from "@/components/main/search";
+import VerbType from "@/components/main/verb-type";
 
 interface IFiltersProps {
   isVerb?: boolean;

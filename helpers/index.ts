@@ -1,9 +1,3 @@
-export function capitalizeWord(word: string | null | undefined) {
-  if (!word) {
-    return;
-  }
+import { capitalizeWord } from "./capitalizeWord";
 
-  const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
-
-  return capitalizedWord;
-}
+export { capitalizeWord };

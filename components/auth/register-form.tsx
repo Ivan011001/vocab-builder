@@ -22,7 +22,7 @@ import {
 import ErrorMessage from "../error-message";
 import SuccessMessage from "../success-message";
 
-import { register } from "@/actions/register";
+import { register } from "@/actions/auth/register";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();

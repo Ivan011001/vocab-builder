@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useTransition,
-  SetStateAction,
-  Dispatch,
-} from "react";
+import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { useForm } from "react-hook-form";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/hooks";
 
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,7 +30,7 @@ import {
 } from "@/components/ui/select";
 import { DialogClose } from "@/components/ui/dialog";
 
-import { addWord } from "@/actions/add-word";
+import { addWord } from "@/actions/main/add-word";
 import { getCategories } from "@/data/categories";
 
 import { ICategory } from "@/types";

@@ -1,6 +1,7 @@
+import { db } from "./db";
+
 import { Prisma, VerbType } from "@prisma/client";
 
-import { db } from "./db";
 import { findUserById } from "@/data/user";
 
 export const getUserDictionary = async (

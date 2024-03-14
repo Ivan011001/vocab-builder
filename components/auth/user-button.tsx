@@ -1,19 +1,19 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/hooks";
 
 import LogoutButton from "./logout-button";
-
+import { AvatarFallback, Avatar, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AvatarFallback, Avatar, AvatarImage } from "../ui/avatar";
 
 import { FaUser } from "react-icons/fa";
 import { ExitIcon } from "@radix-ui/react-icons";
+
 import { capitalizeWord } from "@/helpers";
 
 const UserButton = () => {

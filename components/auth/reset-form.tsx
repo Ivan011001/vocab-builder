@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from "../ui/form";
 
-import { reset } from "@/actions/reset";
+import { reset } from "@/actions/auth/reset";
 
 const ResetForm = () => {
   const [isPending, startTransition] = useTransition();
