@@ -30,6 +30,7 @@ export const getUserDictionary = async (
         contains: search,
         mode: "insensitive",
       },
+      deletedAt: null,
     };
 
     if (category !== "") {

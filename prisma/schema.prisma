@@ -13,7 +13,7 @@ enum UserRole {
 }
 
 enum VerbType {
-  regular 
+  regular
   irregular
 }
 
@@ -92,7 +92,7 @@ model Categorie {
 }
 
 model Recommend {
-  id          String @id @default(cuid())
+  id          String    @id @default(cuid())
   word        String
   translation String
   category    String
@@ -100,7 +100,7 @@ model Recommend {
 }
 
 model Word {
-  id          String @id @default(cuid())
+  id          String    @id @default(cuid())
   word        String
   translation String
   category    String
@@ -110,5 +110,6 @@ model Word {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 }
