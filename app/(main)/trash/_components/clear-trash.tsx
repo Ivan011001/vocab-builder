@@ -7,6 +7,8 @@ import { clearTrash } from "@/actions/main/clear-trash";
 
 import { toast } from "sonner";
 
+import { cn } from "@/lib/utils";
+
 const ClearTrash = () => {
   const [isPending, startTransition] = useTransition();
 
@@ -33,7 +35,12 @@ const ClearTrash = () => {
   return (
     <div className="w-full flex items-center justify-end">
       <button onClick={onHandleClear} disabled={isPending}>
-        <svg className="h-8 w-8 fill-none stroke-red-500">
+        <svg
+          className={cn(
+            "h-8 w-8 fill-none stroke-red-500",
+            isPending && "stroke-gray-400"
+          )}
+        >
           <use xlinkHref="/sprite.svg#icon-delete"></use>
         </svg>
       </button>
