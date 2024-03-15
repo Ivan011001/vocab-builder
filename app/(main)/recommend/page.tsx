@@ -1,7 +1,7 @@
 import Dashboard from "../_components/dashboard";
 import WordsPagination from "../_components/words-pagination";
 import WordsTable from "../_components/words-table";
-import WordsEmpty from "@/components/main/words-empty";
+import WordsEmpty from "@/components/main/word-empty";
 
 import { VerbType } from "@prisma/client";
 
@@ -33,7 +33,14 @@ const RecommendPage = async ({
         {response?.data && response.data.length !== 0 ? (
           <WordsTable words={response?.data} />
         ) : (
-          <WordsEmpty />
+          <WordsEmpty
+            label="Unfortunately, there are no words matching your query"
+            description="You can inreach the list of recommended words by adding your own to the dictionary. Words that were not in this list will be displayed to all users"
+            buttonHref="/recommend"
+            buttonLabel="Browse all"
+            backButtonHref="/"
+            backButtonLabel="Home"
+          />
         )}
       </div>
 

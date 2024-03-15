@@ -1,7 +1,7 @@
 import Dashboard from "./_components/dashboard";
 import WordsPagination from "./_components/words-pagination";
 import WordsTable from "./_components/words-table";
-import WordsEmpty from "@/components/main/words-empty";
+import WordsEmpty from "@/components/main/word-empty";
 
 import { currentUser } from "@/lib/auth";
 
@@ -43,7 +43,14 @@ const DictionaryPage = async ({
         {response?.data && response.data.length !== 0 ? (
           <WordsTable isDictionary words={response?.data} />
         ) : (
-          <WordsEmpty />
+          <WordsEmpty
+            label="Unfortunately, this list is currently being empty"
+            description="You can add new words to your personal dictionary and strt learning them. Inreach your vocabulary by adding new phrases to dictionary"
+            buttonHref="/recommend"
+            buttonLabel="Add word"
+            backButtonHref="/"
+            backButtonLabel="Home"
+          />
         )}
       </div>
 
