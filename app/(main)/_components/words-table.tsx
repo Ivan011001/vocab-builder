@@ -74,7 +74,7 @@ const WordsTable = ({ words, isDictionary, isTrash }: IWordsTableProps) => {
               {isDictionary && "progress" in wordItem && (
                 <TableCell>
                   <ProgressCircle
-                    progress={(wordItem as IDictionary).progress || 20}
+                    progress={(wordItem as IDictionary).progress}
                   />
                 </TableCell>
               )}
