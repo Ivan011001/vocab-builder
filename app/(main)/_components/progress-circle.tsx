@@ -8,14 +8,16 @@ interface IProgressCircleProps {
 }
 
 const ProgressCircle = ({ progress }: IProgressCircleProps) => {
+  const finalProgress = progress > 100 ? 100 : progress;
+
   return (
     <div className="flex items-center gap-x-4">
       <p className="hidden md:block text-neutral-900 text-base font-medium">
-        {progress}%
+        {finalProgress}%
       </p>
       <div className="h-6 w-6">
         <CircularProgressbar
-          value={progress}
+          value={finalProgress}
           strokeWidth={18}
           styles={buildStyles({
             pathTransitionDuration: 0.5,
