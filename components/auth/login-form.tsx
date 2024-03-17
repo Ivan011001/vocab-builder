@@ -28,7 +28,6 @@ import {
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 
@@ -85,7 +84,7 @@ const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerTitle={showTwoFactor ? "Code" : '"Login"'}
+      headerTitle={showTwoFactor ? "Code" : "Login"}
       headerDescription={
         showTwoFactor
           ? "Please enter code that you have recieved to your email:"
