@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 
@@ -12,6 +12,9 @@ import { loginSchema } from "@/schemas";
 import CardWrapper from "./card-wraper";
 
 import Link from "next/link";
+
+import ErrorMessage from "../error-message";
+import SuccessMessage from "../success-message";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
@@ -20,9 +23,14 @@ import {
   FormItem,
   FormControl,
   FormMessage,
+  FormLabel,
 } from "../ui/form";
-import ErrorMessage from "../error-message";
-import SuccessMessage from "../success-message";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 
 import { login } from "@/actions/auth/login";
 
@@ -77,8 +85,12 @@ const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerTitle="Login"
-      headerDescription="Please enter your login details to continue using our service:"
+      headerTitle={showTwoFactor ? "Code" : '"Login"'}
+      headerDescription={
+        showTwoFactor
+          ? "Please enter code that you have recieved to your email:"
+          : "Please enter your login details to continue using our service:"
+      }
       backButtonLabel="Register"
       backButtonHref="/register"
       showSocials
@@ -93,10 +105,16 @@ const LoginForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        disabled={isPending}
+                      <InputOTP
+                        maxLength={6}
+                        render={({ slots }) => (
+                          <InputOTPGroup>
+                            {slots.map((slot, index) => (
+                              <InputOTPSlot key={index} {...slot} />
+                            ))}{" "}
+                          </InputOTPGroup>
+                        )}
                         {...field}
-                        placeholder="Code"
                       />
                     </FormControl>
                     <FormMessage />
