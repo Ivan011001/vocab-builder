@@ -48,7 +48,9 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+https://github.com/Ivan011001/vocab-builder/assets/126008836/eb5e620c-0b24-4f79-bf0e-a1106aafe8a4
+
 
 There are a lot of great apps across the internet, that would help you learn new language. However Vocab Builder is the only that contains everything in one place, making your learning journey as simple and fascinating as it's only possible.
 
