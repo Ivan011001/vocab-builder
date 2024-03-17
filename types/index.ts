@@ -29,3 +29,14 @@ export interface IMetaPagination {
   hasPrevPage: boolean;
   hasNextPage: boolean;
 }
+
+export interface ITask {
+  id: string;
+  word: string;
+  translation: string;
+}
+
+export interface IAnswer {
+  isCorrect: boolean;
+  word: string;
+}

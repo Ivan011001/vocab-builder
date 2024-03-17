@@ -1,6 +1,6 @@
 import { currentUser } from "@/lib/auth";
 
-import { getUserWordsCount } from "@/data/words-count";
+import { getUserWordsCount } from "@/data/statistics";
 
 const Statistics = async () => {
   const user = await currentUser();
