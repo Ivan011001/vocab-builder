@@ -1,9 +1,11 @@
 "use client";
 
-import { getUserWordsCount } from "@/data/words-count";
 import { useCurrentUser } from "@/hooks";
 import { useEffect, useState } from "react";
+
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+
+import { getUserWordsCount } from "@/data/words-count";
 
 const ProgressBar = () => {
   const [wordsCount, setWordsCount] = useState<number | null>(null);
@@ -23,7 +25,7 @@ const ProgressBar = () => {
 
   return (
     <div className="w-full flex items-center justify-end">
-      <div className="h-11 w-11 relative">
+      <div className="h-11 w-11 md:h-[58px] md:w-[58px] relative">
         <CircularProgressbar
           value={currentStrike}
           maxValue={wordsCount!}
@@ -38,7 +40,7 @@ const ProgressBar = () => {
           })}
         />
 
-        <p className="absolute bottom-[50%] right-[50%] translate-y-[50%] translate-x-[50%]">
+        <p className="absolute bottom-[50%] right-[50%] translate-y-[50%] translate-x-[50%] text-center text-neutral-900 text-base font-medium">
           {currentStrike}
         </p>
       </div>
