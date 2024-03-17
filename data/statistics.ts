@@ -7,6 +7,10 @@ export const getUserWordsCount = async (userId: string) => {
     const wordsCount = await db.word.count({
       where: {
         userId,
+        deletedAt: null,
+        progress: {
+          lt: 100,
+        },
       },
     });
 
