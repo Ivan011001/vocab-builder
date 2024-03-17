@@ -1,19 +1,25 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useCurrentUser } from "@/hooks";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+
 import UserButton from "@/components/auth/user-button";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
-import Image from "next/image";
+
 import { FaUser } from "react-icons/fa";
+
+import { capitalizeWord, shortenWord } from "@/helpers";
 
 const LINKS = [
   {
@@ -36,6 +42,10 @@ const LINKS = [
 
 const Navbar = () => {
   const pathname = usePathname();
+
+  const user = useCurrentUser();
+
+  const name = shortenWord(capitalizeWord(user?.name), 7);
 
   return (
     <div className="flex items-center">
@@ -69,30 +79,28 @@ const Navbar = () => {
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent className="w-[185px] bg-accent overflow-hidden">
+          <SheetContent className="w-[185px] md:w-[250px] bg-accent overflow-hidden">
             <SheetHeader className="flex flex-row items-baseline">
-              <div className="flex items-center">
-                <p className="text-button text-base font-medium mr-2">Iryna</p>
-                <div className="flex items-center justify-center rounded-[50%] bg-white w-9 h-9">
-                  <FaUser className="w-4 h-4" color="#85AA9F" />
-                </div>
-              </div>
+              <UserButton isMobile />
             </SheetHeader>
-            <div className="absolute top-[35%] left-4 translate-y-[-35%]">
-              {LINKS.map((link) => {
-                return (
-                  <Button
-                    key={link.title}
-                    asChild
-                    className="py-3 px-5 w-[110px] text-sm rounded-[15px] font-medium"
-                    variant={
-                      link.href === pathname ? "navbar" : "navbarInactive"
-                    }
-                  >
-                    <Link href={link.href}>{link.title}</Link>
-                  </Button>
-                );
-              })}
+            <div className="absolute top-[35%] left-[50%] translate-x-[-50%] translate-y-[-35%] flex items-center justify-center">
+              <ul>
+                {LINKS.map((link) => {
+                  return (
+                    <SheetClose asChild key={link.title}>
+                      <Button
+                        asChild
+                        className="py-3 px-5 w-[110px] text-sm rounded-[15px] font-medium"
+                        variant={
+                          link.href === pathname ? "navbar" : "navbarInactive"
+                        }
+                      >
+                        <Link href={link.href}>{link.title}</Link>
+                      </Button>
+                    </SheetClose>
+                  );
+                })}
+              </ul>
             </div>
             <SheetFooter className="w-[363px] overflow-hidden">
               <Image
