@@ -1,4 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
+
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -20,16 +23,31 @@ const WellDoneModal = ({
   isOpen,
   setIsOpen,
 }: IWellDoneModalProps) => {
+  const { push } = useRouter();
+
+  const handleModalToggle = (state: boolean) => {
+    setIsOpen(state);
+
+    if (state === false) {
+      push("/");
+    }
+  };
+
+  const isDisabled = correctAnswers.length === 0 && mistakes.length === 0;
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>
-        <Button className="md:w-[200px] transition-all duration-300">
+    <Dialog open={isOpen} onOpenChange={handleModalToggle}>
+      <DialogTrigger disabled={isDisabled}>
+        <Button
+          className="md:w-[200px] transition-all duration-300"
+          disabled={isDisabled}
+        >
           Save
         </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[343px] md:max-w-[628px]">
-        <h3 className="text-center text-neutral-50 text-2xl font-semibold leading-7 mb-8">
+        <h3 className=" text-neutral-50 text-2xl font-semibold leading-7 mb-8">
           Well done
         </h3>
 
@@ -67,6 +85,16 @@ const WellDoneModal = ({
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className="absolute top-2 right-3 md:top-[21px] md:right-[6px]">
+          <Image
+            alt="Book"
+            src="/book.png"
+            className="h-[121px] w-[152px] md:h-[179px] md:w-[212px]"
+            height={179}
+            width={212}
+          />
         </div>
       </DialogContent>
     </Dialog>
