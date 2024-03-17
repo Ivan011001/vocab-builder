@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -67,6 +69,16 @@ const WellDoneModal = ({
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className="absolute bottom-11 right-3 md:bottom-[21px] md:right-[6px]">
+          <Image
+            alt="Book"
+            src="/book.png"
+            className="h-[121px] w-[152px] md:h-[179px] md:w-[212px]"
+            height={179}
+            width={212}
+          />
         </div>
       </DialogContent>
     </Dialog>
