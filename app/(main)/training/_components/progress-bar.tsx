@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
-import { getUserWordsCount } from "@/data/words-count";
+import { getUserWordsCount } from "@/data/statistics";
 
 const ProgressBar = () => {
   const [wordsCount, setWordsCount] = useState<number | null>(null);
