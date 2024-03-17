@@ -3,10 +3,12 @@ import TrainingRoom from "./_components/training-room";
 
 const TrainingPage = () => {
   return (
-    <div>
+    <div className="h-full flex flex-col gap-y-2 md:gap-y-4">
       <ProgressBar />
 
-      <TrainingRoom />
+      <div className="flex-grow">
+        <TrainingRoom />
+      </div>
     </div>
   );
 };
